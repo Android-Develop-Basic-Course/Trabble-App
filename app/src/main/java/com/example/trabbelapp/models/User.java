@@ -6,18 +6,10 @@ public class User {
 
     private String email;
     private String password;
-    private FirebaseUser user;
 
-    public User(String email, String password, FirebaseUser user) {
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
-        this.user = user;
-    }
-
-    public User() {
-        this.email = "";
-        this.password = "";
-        this.user = null;
     }
 
     public String getEmail() {

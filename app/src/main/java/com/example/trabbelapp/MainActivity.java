@@ -2,6 +2,7 @@ package com.example.trabbelapp;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.trabbelapp.utils.ViewTools;
 
@@ -41,5 +42,12 @@ public class MainActivity extends AppCompatActivity {
             viewTools.changeView(this, LoggingActivity.class);
         }
         ).start();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("Logging", "Destroy");
+        finish();
     }
 }

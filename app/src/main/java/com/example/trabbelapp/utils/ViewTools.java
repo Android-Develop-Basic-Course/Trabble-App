@@ -34,7 +34,9 @@ public class ViewTools {
 
     public void changeView(MainActivity actualActivity, Class<?> activity){
         Intent intent = new Intent(actualActivity, activity);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         actualActivity.startActivity(intent);
+        actualActivity.finish();
     }
 
     public void setMessageToIntent(AppCompatActivity actualActivity, Class<?> activity, String message){

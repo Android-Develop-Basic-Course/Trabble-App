@@ -1,9 +1,10 @@
 package com.example.trabbelapp.utils;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ViewTools {
 
@@ -29,9 +30,11 @@ public class ViewTools {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
 
-    public void changeView(AppCompatActivity actualActivity, Class<?> activity){
+    public void changeView(Activity actualActivity, Class<?> activity){
         Intent intent = new Intent(actualActivity, activity);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         actualActivity.startActivity(intent);
+        actualActivity.finish();
     }
 
     public void setMessageToIntent(AppCompatActivity actualActivity, Class<?> activity, String message){

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Trabbel App</string>
+    <string name="contentDescriptionMainLogoImage">Pantalla de inicio de la app donde se encuentra el logo de Trabble y su lema Viajar sin problemas</string>
 </resources>

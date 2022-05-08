@@ -1,15 +1,15 @@
 package com.example.trabbelapp.services;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 
+import com.example.trabbelapp.HomeActivity;
 import com.example.trabbelapp.models.User;
 import com.example.trabbelapp.utils.PreferenceShareTools;
+import com.example.trabbelapp.utils.ViewTools;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.util.concurrent.atomic.AtomicReference;
 
 public class FirebaseService {
 
@@ -17,6 +17,15 @@ public class FirebaseService {
     private User user;
     private final Activity activity;
     private final String TAG;
+    private int statusCode;
+
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
+    }
 
     public FirebaseService(Activity activity, String TAG){
         this.mAuth = FirebaseAuth.getInstance();
@@ -24,37 +33,39 @@ public class FirebaseService {
         this.TAG = TAG;
         this.activity = activity;
         FirebaseApp.initializeApp(this.activity);
+        this.statusCode = 201;
     }
 
-    public void loggingFirebase(String email, String password){
+    public void loggingFirebase(String email, String password) {
         setUser(email, password);
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this.activity, task -> {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.w(this.TAG, "logging:success");
-                        // todo: updateUI(user);
                         updateUI(true);
 
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.e(this.TAG, "logging:failure", task.getException());
-                        // todo: updateUI(null);
-                        assert true;
                         updateUI(false);
                     }
                 });
-        
     }
 
     public void updateUI(Boolean ack) {
         if (ack) {
+            this.statusCode = 200;
             PreferenceShareTools preferenceShareTools;
             preferenceShareTools = new PreferenceShareTools(this.activity);
+            preferenceShareTools.setInt("statusCode", this.statusCode);
             preferenceShareTools.setString("emailUser", this.user.getEmail());
             preferenceShareTools.setString("passwordUser", this.user.getPassword());
+            ViewTools viewTools = new ViewTools();
+            viewTools.changeView(this.activity, HomeActivity.class);
         } else {
             setUser("unknown", "unknown");
+            this.statusCode = 304;
         }
     }
 

@@ -1,8 +1,8 @@
 package com.example.trabbelapp.utils;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class PreferenceShareTools {
 
@@ -10,7 +10,7 @@ public class PreferenceShareTools {
     SharedPreferences.Editor editor;
 
     public PreferenceShareTools(Activity activity) {
-        sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
         editor = sharedPreferences.edit();
     }
 

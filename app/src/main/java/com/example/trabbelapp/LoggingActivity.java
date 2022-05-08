@@ -2,37 +2,42 @@ package com.example.trabbelapp;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.EditText;
+
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.trabbelapp.models.User;
+
 import com.example.trabbelapp.services.FirebaseService;
 import com.example.trabbelapp.utils.PreferenceShareTools;
 import com.example.trabbelapp.utils.ViewTools;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class LoggingActivity extends AppCompatActivity {
 
     private final String TAG = "LoggingActivity";
     FirebaseService firebaseService;
-    TextView emailUser;
+    EditText emailUser;
+    EditText passwordUser;
     PreferenceShareTools preferenceShareTools;
+    String email;
+    String password;
+    ViewTools viewTools;
+    AtomicInteger statusCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(null);
-        setContentView(R.layout.activity_logging);
+        super.onCreate(savedInstanceState);
 
-        ViewTools viewTools = new ViewTools();
+        viewTools = new ViewTools();
         preferenceShareTools = new PreferenceShareTools(this);
         firebaseService = new FirebaseService(this, TAG);
 
         viewTools.hideSystemUI(getWindow().getDecorView());
 
-
-        String email;
-        String password;
-        User currentUser;
-
+        emailUser = null;
+        passwordUser = null;
 
         // Comprobar que no hay usuario registrado
         email = preferenceShareTools.getString("emailUser");
@@ -41,19 +46,29 @@ public class LoggingActivity extends AppCompatActivity {
 
         if (email.isEmpty() || password.isEmpty()){
             Log.w(TAG, "sharepreference: no");
-
-            // Recuerda añadir los datos para probarlo
-            email = "{USER_EMAIL}";
-            password = "{USER_PASSWORD}";
-            firebaseService.loggingFirebase(email, password);
+            setContentView(R.layout.activity_logging);
         }
         else {
             Log.w(TAG, "sharepreference: yes");
+            viewTools.changeView(this, HomeActivity.class);
         }
 
-        currentUser = new User(email, password);
+    }
 
+    public void  logIn(View v){
 
+        emailUser = findViewById(R.id.loggingEmailInput);
+        passwordUser = findViewById(R.id.loggingPasswordInput);
+
+        email = emailUser.getText().toString();
+        password = passwordUser.getText().toString();
+
+        firebaseService.loggingFirebase(email, password);
+
+        emailUser.setHint("Re-enter your email");
+        emailUser.setText("");
+        passwordUser.setHint("Re-enter your password");
+        passwordUser.setText("");
     }
 
     @Override
@@ -70,9 +85,9 @@ public class LoggingActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         Log.e(TAG, "Destroy");
-        preferenceShareTools.setString("emailUser", "");
-        preferenceShareTools.setString("passwordUser", "");
-        firebaseService.signOutFirebase();
+        //preferenceShareTools.setString("emailUser", "");
+        //preferenceShareTools.setString("passwordUser", "");
+        //firebaseService.signOutFirebase();
         finish();
     }
 }

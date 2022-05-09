@@ -9,8 +9,16 @@
     <string name="textEmail">Email</string>
     <string name="inputEmailHint">Enter your email …</string>
     <string name="textPassword">Password</string>
-    <string name="passworInputHint">Enter your password ...</string>
+    <string name="passwordInputHint">Enter your password ...</string>
     <string name="visibilityButtonDescription">Visibility of the password</string>
     <string name="noAccountText">Don\'t have account?</string>
     <string name="createAccountText">Create an account</string>
+    <string name="hotelsSectionText">Hoteles</string>
+    <string name="pointOfInterestSectionText">Puntos de Interes</string>
+    <string name="activitiesSectionText">Actividades</string>
+    <string name="homeProfileButtonDescription">Profile of User</string>
+    <string name="homeWelcome">Hello,</string>
+    <string name="signOutButtonText">Sign Out</string>
+    <string name="cardImageDescription">Card Image from RecycleView</string>
+    <string name="defaultText">Default Text</string>
 </resources>

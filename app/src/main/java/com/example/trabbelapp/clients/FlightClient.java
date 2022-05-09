@@ -1,9 +1,11 @@
 package com.example.trabbelapp.clients;
 
 import android.app.Activity;
+
 import com.example.trabbelapp.models.Flights.Flights;
 import com.example.trabbelapp.services.FlightsService;
 import com.example.trabbelapp.utils.PreferenceShareTools;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
@@ -23,7 +25,7 @@ public class FlightClient {
                 1,
                 1,
                 0,
-                "Bearer "+ new PreferenceShareTools(this.activity).getString("API_TOKEN")
+                "Bearer " + new PreferenceShareTools(this.activity).getString("API_TOKEN")
         ).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ds);

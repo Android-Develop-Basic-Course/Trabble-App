@@ -37,7 +37,7 @@ public class Token {
     public Token() {
     }
 
-    public Token(Token token){
+    public Token(Token token) {
         this.accessToken = token.getAccessToken();
         this.applicationName = token.getApplicationName();
         this.tokenType = token.getTokenType();

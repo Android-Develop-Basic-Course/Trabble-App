@@ -23,7 +23,8 @@
             android:layout_width="0dp"
             android:layout_height="200dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/cardImage"
@@ -31,6 +32,7 @@
                 android:layout_height="0dp"
                 android:adjustViewBounds="false"
                 android:background="#000000"
+                android:contentDescription="@string/cardImageDescription"
                 android:cropToPadding="false"
                 android:scaleX="2.5"
                 android:scaleY="2.5"
@@ -53,7 +55,8 @@
             android:layout_marginBottom="16dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="TextView"
+            android:text="@string/defaultText"
+            android:textColor="#424242"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

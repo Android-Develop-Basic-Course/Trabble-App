@@ -3,6 +3,7 @@ package com.example.trabbelapp.clients;
 
 import android.app.Activity;
 import android.util.Log;
+
 import com.example.trabbelapp.models.Token;
 import com.example.trabbelapp.services.TokenService;
 import com.example.trabbelapp.utils.PreferenceShareTools;
@@ -44,7 +45,7 @@ public class TokenClient {
                 });
     }
 
-    public void setAccessCode(String code){
+    public void setAccessCode(String code) {
         PreferenceShareTools preferenceShareTools;
         preferenceShareTools = new PreferenceShareTools(this.activity);
         preferenceShareTools.setString("API_TOKEN", code);

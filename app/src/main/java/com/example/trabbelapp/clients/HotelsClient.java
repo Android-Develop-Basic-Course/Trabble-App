@@ -20,7 +20,7 @@ public class HotelsClient {
         HotelsService hotelsService = retrofit.getRetrofitAmadeusV1().create(HotelsService.class);
         hotelsService.getHotels(
                 41.39, 2.16, 5, "KM", "ALL",
-                "Bearer "+ new PreferenceShareTools(this.activity).getString("API_TOKEN")
+                "Bearer " + new PreferenceShareTools(this.activity).getString("API_TOKEN")
         ).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ds);

@@ -1,7 +1,6 @@
 package com.example.trabbelapp.clients;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.util.Log;
 
 import com.example.trabbelapp.HomeActivity;
@@ -27,7 +26,7 @@ public class FirebaseClient {
         this.statusCode = statusCode;
     }
 
-    public FirebaseClient(Activity activity, String TAG){
+    public FirebaseClient(Activity activity, String TAG) {
         this.mAuth = FirebaseAuth.getInstance();
         this.user = null;
         this.TAG = TAG;
@@ -69,7 +68,7 @@ public class FirebaseClient {
         }
     }
 
-    public void signOutFirebase(){
+    public void signOutFirebase() {
         this.mAuth.signOut();
     }
 

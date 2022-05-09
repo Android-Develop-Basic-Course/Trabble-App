@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,7 +20,7 @@ public class cardAdapterHotels extends RecyclerView.Adapter<cardViewHolder> {
     Context context;
     ClickListener listenerEvent;
 
-    public cardAdapterHotels(List<Datum> list, Context context, ClickListener listen){
+    public cardAdapterHotels(List<Datum> list, Context context, ClickListener listen) {
         this.hotelsList = list;
         this.context = context;
         this.listenerEvent = listen;
@@ -57,8 +58,7 @@ public class cardAdapterHotels extends RecyclerView.Adapter<cardViewHolder> {
 
     @Override
     public void onAttachedToRecyclerView(
-            @NonNull RecyclerView recyclerView)
-    {
+            @NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
 }

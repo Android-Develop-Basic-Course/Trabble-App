@@ -1,10 +1,7 @@
 package com.example.trabbelapp;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -14,8 +11,6 @@ import com.example.trabbelapp.clients.FirebaseClient;
 import com.example.trabbelapp.utils.PreferenceShareTools;
 import com.example.trabbelapp.utils.ViewTools;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class LoggingActivity extends AppCompatActivity {
 
@@ -27,7 +22,6 @@ public class LoggingActivity extends AppCompatActivity {
     String email;
     String password;
     ViewTools viewTools;
-    AtomicInteger statusCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +33,20 @@ public class LoggingActivity extends AppCompatActivity {
 
         viewTools.hideSystemUI(getWindow().getDecorView());
 
+        findViewById(R.id.loggingLogInButton).setOnClickListener(view -> logIn());
+
         emailUser = null;
         passwordUser = null;
 
         // Comprobar que no hay usuario registrado
         email = preferenceShareTools.getString("emailUser");
         password = preferenceShareTools.getString("passwordUser");
-        Log.e(TAG, "InitialSP: " + email + " - "  + password);
+        Log.e(TAG, "InitialSP: " + email + " - " + password);
 
-        if (email.isEmpty() || password.isEmpty()){
+        if (email.isEmpty() || password.isEmpty()) {
             Log.w(TAG, "sharepreference: no");
             setContentView(R.layout.activity_logging);
-        }
-        else {
+        } else {
             Log.w(TAG, "sharepreference: yes");
             viewTools.changeView(this, HomeActivity.class);
         }
@@ -59,8 +54,7 @@ public class LoggingActivity extends AppCompatActivity {
     }
 
 
-    public void  logIn(View v){
-
+    public void logIn() {
         emailUser = findViewById(R.id.loggingEmailInput);
         passwordUser = findViewById(R.id.loggingPasswordInput);
 
@@ -74,7 +68,7 @@ public class LoggingActivity extends AppCompatActivity {
         passwordUser.setHint("Re-enter your password");
         passwordUser.setText("");
         viewTools.hideSystemUI(getWindow().getDecorView());
-        InputMethodManager inputMethodManager =  (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
     }
 
@@ -83,7 +77,7 @@ public class LoggingActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = firebaseClient.getmAuth().getCurrentUser();
-        if(currentUser != null){
+        if (currentUser != null) {
             Log.w(TAG, "currentUser: logged");
         }
     }
@@ -92,9 +86,6 @@ public class LoggingActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         Log.e(TAG, "Destroy");
-        //preferenceShareTools.setString("emailUser", "");
-        //preferenceShareTools.setString("passwordUser", "");
-        //firebaseService.signOutFirebase();
         finish();
     }
 }

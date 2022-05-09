@@ -5,11 +5,11 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    public RetrofitClient(){
+    public RetrofitClient() {
 
     }
 
-    public Retrofit getRetrofitSerpAPI(){
+    public Retrofit getRetrofitSerpAPI() {
         return new Retrofit.Builder()
                 .baseUrl("https://serpapi.com/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -17,7 +17,7 @@ public class RetrofitClient {
                 .build();
     }
 
-    public Retrofit getRetrofitAmadeusV1(){
+    public Retrofit getRetrofitAmadeusV1() {
         return new Retrofit.Builder()
                 .baseUrl("https://test.api.amadeus.com/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -25,7 +25,7 @@ public class RetrofitClient {
                 .build();
     }
 
-    public Retrofit getRetrofitAmadeusV2(){
+    public Retrofit getRetrofitAmadeusV2() {
         return new Retrofit.Builder()
                 .baseUrl("https://test.api.amadeus.com/v2/")
                 .addConverterFactory(GsonConverterFactory.create())

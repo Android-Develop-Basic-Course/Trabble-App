@@ -4,8 +4,7 @@ import java.text.Normalizer;
 
 public class StringTools {
 
-    public static String stripAccents(String message)
-    {
+    public static String stripAccents(String message) {
         /*Salvamos las ñ*/
         message = message.replace('ñ', '\001');
         message = message.replace('Ñ', '\002');
@@ -20,8 +19,8 @@ public class StringTools {
     }
 
     public static String strip(String cadena) {
-        String limpio =null;
-        if (cadena !=null) {
+        String limpio = null;
+        if (cadena != null) {
             String valor = cadena;
             valor = valor.toUpperCase();
             // Normalizar texto para eliminar acentos, dieresis, cedillas y tildes

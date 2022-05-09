@@ -19,12 +19,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class cardAdapterPointsOfInterest extends RecyclerView.Adapter<cardViewHolder>{
+public class cardAdapterPointsOfInterest extends RecyclerView.Adapter<cardViewHolder> {
     List<Datum> PointsOfInterestList;
     Context context;
     ClickListener listenerEvent;
 
-    public cardAdapterPointsOfInterest(List<Datum> list, Context context, ClickListener listen){
+    public cardAdapterPointsOfInterest(List<Datum> list, Context context, ClickListener listen) {
         this.PointsOfInterestList = list;
         this.context = context;
         this.listenerEvent = listen;
@@ -75,8 +75,7 @@ public class cardAdapterPointsOfInterest extends RecyclerView.Adapter<cardViewHo
 
     @Override
     public void onAttachedToRecyclerView(
-            @NonNull RecyclerView recyclerView)
-    {
+            @NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
 }

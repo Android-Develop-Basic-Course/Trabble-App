@@ -6,6 +6,7 @@ import android.app.Activity;
 import com.example.trabbelapp.models.PointsOfInterest.PointsOfInterest;
 import com.example.trabbelapp.services.PointsOfInterestService;
 import com.example.trabbelapp.utils.PreferenceShareTools;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
@@ -20,7 +21,7 @@ public class PointsOfInterestClient {
         PointsOfInterestService pointsOfInterestService = retrofit.getRetrofitAmadeusV1().create(PointsOfInterestService.class);
         pointsOfInterestService.getPointsOfInterest(
                 41.39, 2.16, 5,
-                "Bearer "+ new PreferenceShareTools(this.activity).getString("API_TOKEN")
+                "Bearer " + new PreferenceShareTools(this.activity).getString("API_TOKEN")
         ).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ds);

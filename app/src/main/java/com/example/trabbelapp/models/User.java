@@ -1,7 +1,5 @@
 package com.example.trabbelapp.models;
 
-import com.google.firebase.auth.FirebaseUser;
-
 public class User {
 
     private String email;

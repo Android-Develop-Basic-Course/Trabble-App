@@ -48,7 +48,6 @@
         android:layout_marginEnd="40dp"
         android:text="@string/loggingButtonText"
         android:textAllCaps="false"
-        android:onClick="logIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LoggingBoxLogIn" />
@@ -127,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:ems="10"
-                android:hint="@string/passworInputHint"
+                android:hint="@string/passwordInputHint"
                 android:inputType="textPassword"
                 android:padding="10dp"
                 android:textSize="14sp"

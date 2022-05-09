@@ -2,9 +2,18 @@ package com.example.trabbelapp.clients;
 
 import android.app.Activity;
 import android.util.Log;
+import android.widget.Toast;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.trabbelapp.HomeActivity;
+import com.example.trabbelapp.R;
 import com.example.trabbelapp.models.Activities.Activities;
 import com.example.trabbelapp.models.Activities.Datum;
 import com.example.trabbelapp.models.Token;
+import com.example.trabbelapp.recycleview.ClickListener;
+import com.example.trabbelapp.recycleview.cardAdapter;
 import com.example.trabbelapp.services.ActivitiesService;
 import com.example.trabbelapp.utils.PreferenceShareTools;
 
@@ -35,6 +44,21 @@ public class ActivitiesClient {
                         for(Datum d : response.getData()){
                             Log.e("ACTIVITIES", d.getName());
                         }
+                        RecyclerView recyclerView = (RecyclerView) a.findViewById(R.id.cardsView);
+                        ClickListener listener = new ClickListener() {
+                            @Override
+                            public void click(int index){
+                                Log.e("PLACE", index + " - " + response.getData().get(index).getName());
+                            }
+                        };
+                        cardAdapter cAdap = new cardAdapter(response.getData(), activity.getApplication(), listener);
+                        recyclerView.setAdapter(cAdap);
+                        LinearLayoutManager HorizontalLayout
+                                = new LinearLayoutManager(
+                                activity,
+                                LinearLayoutManager.HORIZONTAL,
+                                false);
+                        recyclerView.setLayoutManager(HorizontalLayout);
                         dispose();
                     }
 
@@ -44,6 +68,8 @@ public class ActivitiesClient {
                         Log.e("TOKEN", e.getMessage());
                         dispose();
                     }
-                });;
+                });
+
+
     }
 }

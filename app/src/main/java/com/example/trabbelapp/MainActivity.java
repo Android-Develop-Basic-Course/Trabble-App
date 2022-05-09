@@ -4,6 +4,8 @@ package com.example.trabbelapp;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.trabbelapp.clients.TokenClient;
 import com.example.trabbelapp.utils.ViewTools;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         viewTools = new ViewTools();
-
         /*
          Eliminamos todos el sistema UI del movil que no se necesita
          de esta manera tenemos el sistema en pantalla completa
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        new TokenClient(this);
         /*
          De esta manera mostraremos la pagina de inicio al usuario
          presentandole la app, cual es su nombre y su branding

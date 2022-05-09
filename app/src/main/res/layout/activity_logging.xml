@@ -115,11 +115,15 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="16dp"
+                android:alpha="0.6"
+                android:background="@null"
+                android:contentDescription="@string/visibilityButtonDescription"
+                android:scaleX="2"
+                android:scaleY="2"
+                android:src="@drawable/visible_password_foreground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars"
-                android:contentDescription="@string/visibilityButtonDescription" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/loggingPasswordInput"

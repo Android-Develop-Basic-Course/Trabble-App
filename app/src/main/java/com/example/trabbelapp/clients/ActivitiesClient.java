@@ -28,7 +28,7 @@ public class ActivitiesClient {
 
     Activity activity;
 
-    public ActivitiesClient(Activity a) {
+    public ActivitiesClient(Activity a, DisposableSingleObserver<Activities> ds) {
         this.activity = a;
         RetrofitClient retrofit = new RetrofitClient();
         ActivitiesService activitiesService = retrofit.getRetrofit().create(ActivitiesService.class);
@@ -37,39 +37,6 @@ public class ActivitiesClient {
                 "Bearer "+ new PreferenceShareTools(this.activity).getString("API_TOKEN")
         ).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new DisposableSingleObserver<Activities>() {
-                    @Override
-                    public void onSuccess(Activities response) {
-                        // todo - work with the resulting ...
-                        for(Datum d : response.getData()){
-                            Log.e("ACTIVITIES", d.getName());
-                        }
-                        RecyclerView recyclerView = (RecyclerView) a.findViewById(R.id.cardsView);
-                        ClickListener listener = new ClickListener() {
-                            @Override
-                            public void click(int index){
-                                Log.e("PLACE", index + " - " + response.getData().get(index).getName());
-                            }
-                        };
-                        cardAdapter cAdap = new cardAdapter(response.getData(), activity.getApplication(), listener);
-                        recyclerView.setAdapter(cAdap);
-                        LinearLayoutManager HorizontalLayout
-                                = new LinearLayoutManager(
-                                activity,
-                                LinearLayoutManager.HORIZONTAL,
-                                false);
-                        recyclerView.setLayoutManager(HorizontalLayout);
-                        dispose();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        // todo - handle the error case ...
-                        Log.e("TOKEN", e.getMessage());
-                        dispose();
-                    }
-                });
-
-
+                .subscribe(ds);
     }
 }

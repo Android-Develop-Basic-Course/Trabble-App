@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.trabbelapp.HomeActivity;
 import com.example.trabbelapp.R;
 import com.example.trabbelapp.models.Activities.Datum;
 import com.squareup.picasso.Picasso;

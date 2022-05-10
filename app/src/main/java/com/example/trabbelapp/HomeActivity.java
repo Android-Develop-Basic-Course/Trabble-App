@@ -1,16 +1,24 @@
 package com.example.trabbelapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 
 import com.example.trabbelapp.clients.ActivitiesClient;
 import com.example.trabbelapp.clients.TokenClient;
+import com.example.trabbelapp.models.Activities.Activities;
+import com.example.trabbelapp.models.Activities.Datum;
 import com.example.trabbelapp.models.Token;
 import com.example.trabbelapp.clients.FirebaseClient;
+import com.example.trabbelapp.recycleview.ClickListener;
+import com.example.trabbelapp.recycleview.cardAdapter;
 import com.example.trabbelapp.utils.PreferenceShareTools;
 import com.example.trabbelapp.utils.ViewTools;
+
+import io.reactivex.observers.DisposableSingleObserver;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -33,9 +41,46 @@ public class HomeActivity extends AppCompatActivity {
         token.setAccessToken(preferenceShareTools.getString("API_TOKEN"));
         Log.e("TOKEN-final", token.getAccessToken());
 
-        ActivitiesClient activitiesClient = new ActivitiesClient(this);
+         new ActivitiesClient(this, getActivitiesObserver());
 
 
+    }
+
+
+    public DisposableSingleObserver<Activities> getActivitiesObserver(){
+        return new DisposableSingleObserver<Activities>() {
+            @Override
+            public void onSuccess(Activities response) {
+                // todo - work with the resulting ...
+
+                for(Datum d : response.getData()){
+                    Log.e("ACTIVITIES", d.getName());
+                }
+                RecyclerView recyclerView = findViewById(R.id.cardsView);
+                ClickListener listener = new ClickListener() {
+                    @Override
+                    public void click(int index){
+                        Log.e("PLACE", index + " - " + response.getData().get(index).getName());
+                    }
+                };
+                cardAdapter cAdap = new cardAdapter(response.getData(), getApplication(), listener);
+                recyclerView.setAdapter(cAdap);
+                LinearLayoutManager HorizontalLayout
+                        = new LinearLayoutManager(
+                        getApplication(),
+                        LinearLayoutManager.HORIZONTAL,
+                        false);
+                recyclerView.setLayoutManager(HorizontalLayout);
+                dispose();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                // todo - handle the error case ...
+                Log.e("TOKEN", e.getMessage());
+                dispose();
+            }
+        };
     }
 
     @Override

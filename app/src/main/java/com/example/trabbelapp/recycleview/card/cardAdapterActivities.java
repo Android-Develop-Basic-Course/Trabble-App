@@ -1,4 +1,4 @@
-package com.example.trabbelapp.recycleview;
+package com.example.trabbelapp.recycleview.card;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,16 +9,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trabbelapp.R;
 import com.example.trabbelapp.models.Activities.Datum;
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
-public class cardAdapter extends RecyclerView.Adapter<cardViewHolder>{
+public class cardAdapterActivities extends RecyclerView.Adapter<cardViewHolder>{
 
     List<Datum> activityList;
     Context context;
     ClickListener listenerEvent;
 
-    public cardAdapter(List<Datum> list, Context context, ClickListener listen){
+    public cardAdapterActivities(List<Datum> list, Context context, ClickListener listen){
         this.activityList = list;
         this.context = context;
         this.listenerEvent = listen;

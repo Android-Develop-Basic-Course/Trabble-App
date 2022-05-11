@@ -17,7 +17,7 @@ public class TokenClient {
 
     public TokenClient(Activity a) {
         RetrofitClient retrofit = new RetrofitClient();
-        TokenService tokenService = retrofit.getRetrofit().create(TokenService.class);
+        TokenService tokenService = retrofit.getRetrofitV1().create(TokenService.class);
         this.activity = a;
         tokenService.getToken(
                 "client_credentials",

@@ -15,7 +15,7 @@ public class ActivitiesClient {
     public ActivitiesClient(Activity a, DisposableSingleObserver<Activities> ds) {
         this.activity = a;
         RetrofitClient retrofit = new RetrofitClient();
-        ActivitiesService activitiesService = retrofit.getRetrofit().create(ActivitiesService.class);
+        ActivitiesService activitiesService = retrofit.getRetrofitV1().create(ActivitiesService.class);
         activitiesService.getActivities(
                 41.39, 2.16, 5,
                 "Bearer "+ new PreferenceShareTools(this.activity).getString("API_TOKEN")

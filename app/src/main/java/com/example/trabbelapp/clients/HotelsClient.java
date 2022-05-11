@@ -17,7 +17,7 @@ public class HotelsClient {
     public HotelsClient(Activity a, DisposableSingleObserver<Hotels> ds) {
         this.activity = a;
         RetrofitClient retrofit = new RetrofitClient();
-        HotelsService hotelsService = retrofit.getRetrofitV1().create(HotelsService.class);
+        HotelsService hotelsService = retrofit.getRetrofitAmadeusV1().create(HotelsService.class);
         hotelsService.getHotels(
                 41.39, 2.16, 5, "KM", "ALL",
                 "Bearer "+ new PreferenceShareTools(this.activity).getString("API_TOKEN")

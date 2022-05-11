@@ -61,7 +61,7 @@
                 android:layout_height="24dp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/homeCardViewPointOfInterest"
+                android:id="@+id/homeCardViewPointsOfInterest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

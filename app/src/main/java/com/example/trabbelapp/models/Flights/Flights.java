@@ -1,4 +1,4 @@
-package com.example.trabbelapp.models.Flight;
+package com.example.trabbelapp.models.Flights;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 
-public class Flight {
+public class Flights {
 
     @SerializedName("meta")
     @Expose

@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "189555782462",
+    "firebase_url": "https://trable-a3528-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "trable-a3528",
+    "storage_bucket": "trable-a3528.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189555782462:android:1224a7cfaf299fd5c8b26f",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189555782462-ls533gum05evv8he714nat9ve7h0naae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9HFE4EpTfcgn-pfXfwhBsGWBn8XeytpU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189555782462-ls533gum05evv8he714nat9ve7h0naae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189555782462:android:c3245a865f0bb1c2c8b26f",
+        "android_client_info": {
+          "package_name": "com.example.trabbelapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189555782462-ls533gum05evv8he714nat9ve7h0naae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9HFE4EpTfcgn-pfXfwhBsGWBn8XeytpU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189555782462-ls533gum05evv8he714nat9ve7h0naae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

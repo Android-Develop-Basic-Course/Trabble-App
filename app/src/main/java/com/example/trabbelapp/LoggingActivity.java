@@ -33,8 +33,6 @@ public class LoggingActivity extends AppCompatActivity {
 
         viewTools.hideSystemUI(getWindow().getDecorView());
 
-        findViewById(R.id.loggingLogInButton).setOnClickListener(view -> logIn());
-
         emailUser = null;
         passwordUser = null;
 
@@ -46,6 +44,7 @@ public class LoggingActivity extends AppCompatActivity {
         if (email.isEmpty() || password.isEmpty()) {
             Log.w(TAG, "sharepreference: no");
             setContentView(R.layout.activity_logging);
+            findViewById(R.id.loggingLogInButton).setOnClickListener(view -> logIn());
         } else {
             Log.w(TAG, "sharepreference: yes");
             viewTools.changeView(this, HomeActivity.class);

@@ -1,5 +1,6 @@
 package com.example.trabbelapp;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,12 +40,13 @@ public class HomeActivity extends AppCompatActivity {
     LinearLayout layoutDropDown;
     Animation dropdown;
     Animation dropup;
+    Activity actual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        actual = this;
         viewTools = new ViewTools();
         viewTools.hideSystemUI(getWindow().getDecorView());
 
@@ -85,6 +87,11 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void click(int index) {
                         Log.e(TAG, "PLACE: " + index + " - " + response.getData().get(index).getName());
+                        viewTools.sendSerializableMessageToIntent(
+                                actual,
+                                SectionPage.class,
+                                "activity",
+                                response.getData().get(index));
                     }
                 };
                 cardAdapterActivities cAdap = new cardAdapterActivities(response.getData(), getApplication(), listener);
@@ -121,6 +128,11 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void click(int index) {
                         Log.e(TAG, "PLACE: " + index + " - " + response.getData().get(index).getName());
+                        viewTools.sendSerializableMessageToIntent(
+                                actual,
+                                SectionPage.class,
+                                "pointofinterest",
+                                response.getData().get(index));
                     }
                 };
                 cardAdapterPointsOfInterest cAdap = new cardAdapterPointsOfInterest(response.getData(), getApplication(), listener);
@@ -157,6 +169,11 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void click(int index) {
                         Log.e("PLACE", index + " - " + response.getData().get(index).getName());
+                        viewTools.sendSerializableMessageToIntent(
+                                actual,
+                                SectionPage.class,
+                                "hotels",
+                                response.getData().get(index));
                     }
                 };
                 cardAdapterHotels cAdap = new cardAdapterHotels(response.getData().subList(0, 5), getApplication(), listener);

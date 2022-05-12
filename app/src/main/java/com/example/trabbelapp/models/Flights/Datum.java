@@ -1,11 +1,14 @@
 package com.example.trabbelapp.models.Flights;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Datum {
+public class Datum implements Parcelable {
 
     @SerializedName("type")
     @Expose
@@ -46,6 +49,37 @@ public class Datum {
     @SerializedName("travelerPricings")
     @Expose
     private List<TravelerPricing> travelerPricings = null;
+
+    protected Datum(Parcel in) {
+        type = in.readString();
+        id = in.readString();
+        source = in.readString();
+        byte tmpInstantTicketingRequired = in.readByte();
+        instantTicketingRequired = tmpInstantTicketingRequired == 0 ? null : tmpInstantTicketingRequired == 1;
+        byte tmpNonHomogeneous = in.readByte();
+        nonHomogeneous = tmpNonHomogeneous == 0 ? null : tmpNonHomogeneous == 1;
+        byte tmpOneWay = in.readByte();
+        oneWay = tmpOneWay == 0 ? null : tmpOneWay == 1;
+        lastTicketingDate = in.readString();
+        if (in.readByte() == 0) {
+            numberOfBookableSeats = null;
+        } else {
+            numberOfBookableSeats = in.readInt();
+        }
+        validatingAirlineCodes = in.createStringArrayList();
+    }
+
+    public static final Creator<Datum> CREATOR = new Creator<Datum>() {
+        @Override
+        public Datum createFromParcel(Parcel in) {
+            return new Datum(in);
+        }
+
+        @Override
+        public Datum[] newArray(int size) {
+            return new Datum[size];
+        }
+    };
 
     public String getType() {
         return type;
@@ -151,4 +185,26 @@ public class Datum {
         this.travelerPricings = travelerPricings;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(type);
+        parcel.writeString(id);
+        parcel.writeString(source);
+        parcel.writeByte((byte) (instantTicketingRequired == null ? 0 : instantTicketingRequired ? 1 : 2));
+        parcel.writeByte((byte) (nonHomogeneous == null ? 0 : nonHomogeneous ? 1 : 2));
+        parcel.writeByte((byte) (oneWay == null ? 0 : oneWay ? 1 : 2));
+        parcel.writeString(lastTicketingDate);
+        if (numberOfBookableSeats == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(numberOfBookableSeats);
+        }
+        parcel.writeStringList(validatingAirlineCodes);
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.trabbelapp.services;
+package com.example.trabbelapp.clients;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import com.example.trabbelapp.utils.ViewTools;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class FirebaseService {
+public class FirebaseClient {
 
     private FirebaseAuth mAuth;
     private User user;
@@ -27,7 +27,7 @@ public class FirebaseService {
         this.statusCode = statusCode;
     }
 
-    public FirebaseService(Activity activity, String TAG){
+    public FirebaseClient(Activity activity, String TAG){
         this.mAuth = FirebaseAuth.getInstance();
         this.user = null;
         this.TAG = TAG;

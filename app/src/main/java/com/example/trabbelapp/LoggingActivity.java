@@ -1,13 +1,16 @@
 package com.example.trabbelapp;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.trabbelapp.services.FirebaseService;
+import com.example.trabbelapp.clients.FirebaseClient;
 import com.example.trabbelapp.utils.PreferenceShareTools;
 import com.example.trabbelapp.utils.ViewTools;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class LoggingActivity extends AppCompatActivity {
 
     private final String TAG = "LoggingActivity";
-    FirebaseService firebaseService;
+    FirebaseClient firebaseClient;
     EditText emailUser;
     EditText passwordUser;
     PreferenceShareTools preferenceShareTools;
@@ -32,7 +35,7 @@ public class LoggingActivity extends AppCompatActivity {
 
         viewTools = new ViewTools();
         preferenceShareTools = new PreferenceShareTools(this);
-        firebaseService = new FirebaseService(this, TAG);
+        firebaseClient = new FirebaseClient(this, TAG);
 
         viewTools.hideSystemUI(getWindow().getDecorView());
 
@@ -55,6 +58,7 @@ public class LoggingActivity extends AppCompatActivity {
 
     }
 
+
     public void  logIn(View v){
 
         emailUser = findViewById(R.id.loggingEmailInput);
@@ -63,19 +67,22 @@ public class LoggingActivity extends AppCompatActivity {
         email = emailUser.getText().toString();
         password = passwordUser.getText().toString();
 
-        firebaseService.loggingFirebase(email, password);
+        firebaseClient.loggingFirebase(email, password);
 
         emailUser.setHint("Re-enter your email");
         emailUser.setText("");
         passwordUser.setHint("Re-enter your password");
         passwordUser.setText("");
+        viewTools.hideSystemUI(getWindow().getDecorView());
+        InputMethodManager inputMethodManager =  (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
     }
 
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = firebaseService.getmAuth().getCurrentUser();
+        FirebaseUser currentUser = firebaseClient.getmAuth().getCurrentUser();
         if(currentUser != null){
             Log.w(TAG, "currentUser: logged");
         }

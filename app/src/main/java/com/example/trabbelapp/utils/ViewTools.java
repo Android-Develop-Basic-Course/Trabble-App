@@ -10,24 +10,26 @@ public class ViewTools {
 
     public ViewTools(){}
 
-    public void hideSystemUI(View decorView){
-        decorView.setSystemUiVisibility(deleteSystemUI());
-        decorView.setOnSystemUiVisibilityChangeListener(
-                visibility -> {
-                    if (visibility == 0){
-                        decorView.setSystemUiVisibility(deleteSystemUI());
-                    }
-                }
-        );
+    public void hideSystemUI(View decorView) {
+        int uiOptions = decorView.getSystemUiVisibility();
+        int newUiOptions = uiOptions;
+        newUiOptions |= View.SYSTEM_UI_FLAG_LOW_PROFILE;
+        newUiOptions |= View.SYSTEM_UI_FLAG_FULLSCREEN;
+        newUiOptions |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        newUiOptions |= View.SYSTEM_UI_FLAG_IMMERSIVE;
+        newUiOptions |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(newUiOptions);
     }
 
-    public int deleteSystemUI(){
-        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    public void showSystemUI(View decorView) {
+        int uiOptions = decorView.getSystemUiVisibility();
+        int newUiOptions = uiOptions;
+        newUiOptions &= ~View.SYSTEM_UI_FLAG_LOW_PROFILE;
+        newUiOptions &= ~View.SYSTEM_UI_FLAG_FULLSCREEN;
+        newUiOptions &= ~View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        newUiOptions &= ~View.SYSTEM_UI_FLAG_IMMERSIVE;
+        newUiOptions &= ~View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(newUiOptions);
     }
 
     public void changeView(Activity actualActivity, Class<?> activity){

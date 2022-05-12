@@ -18,8 +18,38 @@ public class SectionPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_section_page);
         ViewTools viewTools = new ViewTools();
-        Datum activityCity;
-        activityCity = (Datum) viewTools.reciveSerializableMessageFromIntent(this, "activity");
-        Log.e(TAG, activityCity.getName());
+        com.example.trabbelapp.models.Activities.Datum activityCity;
+        com.example.trabbelapp.models.Hotels.Datum hotelCity;
+        com.example.trabbelapp.models.PointsOfInterest.Datum pointofinterestCity;
+
+        activityCity = (com.example.trabbelapp.models.Activities.Datum) viewTools
+                .reciveSerializableMessageFromIntent(this, "activity");
+        hotelCity = (com.example.trabbelapp.models.Hotels.Datum) viewTools
+                .reciveSerializableMessageFromIntent(this, "hotel");
+        pointofinterestCity = (com.example.trabbelapp.models.PointsOfInterest.Datum) viewTools
+                .reciveSerializableMessageFromIntent(this, "pointofinterest");
+        if(activityCity!=null){
+            Log.e(TAG, activityCity.getName());
+
+        }
+        if (hotelCity!=null){
+            Log.e(TAG, hotelCity.getName());
+        }
+        if (pointofinterestCity!=null){
+            Log.e(TAG, pointofinterestCity.getName());
+        }
+
+    }
+
+    public void setLayoutActivity(){
+
+    }
+
+    public void setLayoutHotel(){
+
+    }
+
+    public void setLayoutPointOfInterest(){
+
     }
 }

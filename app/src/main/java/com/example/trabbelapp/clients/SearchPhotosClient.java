@@ -34,7 +34,7 @@ public class SearchPhotosClient {
                 "image",
                 query,
                 2,
-                "7e0edca45847bf6ad380ae3dcb8c73bbd3164a5ddd752833bd5026b4c4508dea"
+                "ec9e3b8ff6e5443db7de345d0a551f5641e42d4df1a604ff690a0a2005460646"
         ).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

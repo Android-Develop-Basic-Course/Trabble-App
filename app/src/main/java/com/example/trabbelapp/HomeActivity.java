@@ -3,8 +3,18 @@ package com.example.trabbelapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.app.ActionBar;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+
 import com.example.trabbelapp.clients.ActivitiesClient;
 import com.example.trabbelapp.clients.HotelsClient;
 import com.example.trabbelapp.clients.PointsOfInterestClient;
@@ -28,16 +38,37 @@ public class HomeActivity extends AppCompatActivity {
     PreferenceShareTools preferenceShareTools;
     ViewTools viewTools;
     Token token;
+    boolean dropdownButton;
+    LinearLayout layoutDropDown;
+    Animation dropdown;
+    Animation dropup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        viewTools = new ViewTools();
+        viewTools.hideSystemUI(getWindow().getDecorView());
+
+
+        dropdown = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.dropdown);
+        dropup = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.dropup);
+        setAnimations();
+
+
+
+        dropdownButton = false;
+        layoutDropDown = findViewById(R.id.homeProfileOptionsLinearLayout);
+
         preferenceShareTools = new PreferenceShareTools(this);
         firebaseClient = new FirebaseClient(this, TAG);
-        viewTools = new ViewTools();
 
-        viewTools.hideSystemUI(getWindow().getDecorView());
+
+
+
         token = new Token();
         token.setAccessToken(preferenceShareTools.getString("API_TOKEN"));
         Log.e("TOKEN-final", token.getAccessToken());
@@ -48,7 +79,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
     }
-
 
     public DisposableSingleObserver<Activities> getActivitiesObserver(){
         return new DisposableSingleObserver<Activities>() {
@@ -158,14 +188,64 @@ public class HomeActivity extends AppCompatActivity {
         };
     }
 
+    public void signOut(View v){
+        System.err.println("SignOut");
+        preferenceShareTools.setString("emailUser", "");
+        preferenceShareTools.setString("passwordUser", "");
+        firebaseClient.signOutFirebase();
+        finish();
+        viewTools.changeView(this, MainActivity.class);
+    }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.e(TAG, "Destroy");
-        //preferenceShareTools.setString("emailUser", "");
-        //preferenceShareTools.setString("passwordUser", "");
-        //firebaseService.signOutFirebase();
-        finish();
+    }
+
+    public void dropdown(View v){
+        if (!dropdownButton){
+            layoutDropDown.startAnimation(dropdown);
+        }
+        else{
+            layoutDropDown.startAnimation(dropup);
+        }
+        dropdownButton = !dropdownButton;
+    }
+
+    public void setAnimations(){
+        dropup.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                //When the animation was finished, set gone to the view
+                layoutDropDown.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        dropdown.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                //When the animation start, set visible to the view
+                layoutDropDown.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                layoutDropDown.setTranslationY(0f);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
     }
 }

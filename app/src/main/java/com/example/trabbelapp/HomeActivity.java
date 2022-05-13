@@ -20,10 +20,10 @@ import com.example.trabbelapp.models.Activities.Activities;
 import com.example.trabbelapp.models.Hotels.Hotels;
 import com.example.trabbelapp.models.PointsOfInterest.PointsOfInterest;
 import com.example.trabbelapp.models.Token;
-import com.example.trabbelapp.recycleview.card.ClickListener;
-import com.example.trabbelapp.recycleview.card.cardAdapterActivities;
-import com.example.trabbelapp.recycleview.card.cardAdapterHotels;
-import com.example.trabbelapp.recycleview.card.cardAdapterPointsOfInterest;
+import com.example.trabbelapp.views.section.recycleview.card.ClickListener;
+import com.example.trabbelapp.views.section.recycleview.card.cardAdapterActivities;
+import com.example.trabbelapp.views.section.recycleview.card.cardAdapterHotels;
+import com.example.trabbelapp.views.section.recycleview.card.cardAdapterPointsOfInterest;
 import com.example.trabbelapp.utils.PreferenceShareTools;
 import com.example.trabbelapp.utils.ViewTools;
 
@@ -73,6 +73,18 @@ public class HomeActivity extends AppCompatActivity {
         new HotelsClient(this, getHotelsObserver());
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        viewTools.hideSystemUI(getWindow().getDecorView());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        viewTools.hideSystemUI(getWindow().getDecorView());
+    }
+
     public DisposableSingleObserver<Activities> getActivitiesObserver() {
         return new DisposableSingleObserver<Activities>() {
             @Override
@@ -80,7 +92,7 @@ public class HomeActivity extends AppCompatActivity {
                 // todo - work with the resulting ...
 
                 for (com.example.trabbelapp.models.Activities.Datum d : response.getData()) {
-                    Log.e("ACTIVITIES", d.getName());
+                    Log.e("Observer", d.getName());
                 }
                 RecyclerView recyclerView = findViewById(R.id.cardsViewActivities);
                 ClickListener listener = new ClickListener() {
@@ -121,7 +133,7 @@ public class HomeActivity extends AppCompatActivity {
                 // todo - work with the resulting ...
 
                 for (com.example.trabbelapp.models.PointsOfInterest.Datum d : response.getData()) {
-                    Log.e("ACTIVITIES", d.getName());
+                    Log.e("Observer", d.getName());
                 }
                 RecyclerView recyclerView = findViewById(R.id.homeCardViewPointsOfInterest);
                 ClickListener listener = new ClickListener() {
@@ -162,7 +174,7 @@ public class HomeActivity extends AppCompatActivity {
                 // todo - work with the resulting ...
 
                 for (com.example.trabbelapp.models.Hotels.Datum d : response.getData()) {
-                    Log.e("ACTIVITIES", d.getName());
+                    Log.e("Observer", d.getName());
                 }
                 RecyclerView recyclerView = findViewById(R.id.cardsViewHotels);
                 ClickListener listener = new ClickListener() {
@@ -172,7 +184,7 @@ public class HomeActivity extends AppCompatActivity {
                         viewTools.sendSerializableMessageToIntent(
                                 actual,
                                 SectionPage.class,
-                                "hotels",
+                                "hotel",
                                 response.getData().get(index));
                     }
                 };

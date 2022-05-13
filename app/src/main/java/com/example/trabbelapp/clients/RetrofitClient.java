@@ -9,6 +9,10 @@ public class RetrofitClient {
 
     }
 
+    public static String getSerAPIToken(){
+        return "97bbe00a66166d1db8958dd6835e88ac884ae7fa1a6d5f6b9f5ae0a4905628a9";
+    }
+
     public Retrofit getRetrofitSerpAPI() {
         return new Retrofit.Builder()
                 .baseUrl("https://serpapi.com/")

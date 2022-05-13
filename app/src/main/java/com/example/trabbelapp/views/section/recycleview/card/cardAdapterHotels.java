@@ -1,4 +1,4 @@
-package com.example.trabbelapp.recycleview.card;
+package com.example.trabbelapp.views.section.recycleview.card;
 
 import android.content.Context;
 import android.view.LayoutInflater;

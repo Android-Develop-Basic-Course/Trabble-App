@@ -1,11 +1,14 @@
 package com.example.trabbelapp.models.Activities;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Datum {
+public class Datum implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -37,6 +40,28 @@ public class Datum {
     @SerializedName("price")
     @Expose
     private Price price;
+
+    protected Datum(Parcel in) {
+        id = in.readString();
+        type = in.readString();
+        name = in.readString();
+        shortDescription = in.readString();
+        rating = in.readString();
+        pictures = in.createStringArrayList();
+        bookingLink = in.readString();
+    }
+
+    public static final Creator<Datum> CREATOR = new Creator<Datum>() {
+        @Override
+        public Datum createFromParcel(Parcel in) {
+            return new Datum(in);
+        }
+
+        @Override
+        public Datum[] newArray(int size) {
+            return new Datum[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -118,4 +143,19 @@ public class Datum {
         this.price = price;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(id);
+        parcel.writeString(type);
+        parcel.writeString(name);
+        parcel.writeString(shortDescription);
+        parcel.writeString(rating);
+        parcel.writeStringList(pictures);
+        parcel.writeString(bookingLink);
+    }
 }

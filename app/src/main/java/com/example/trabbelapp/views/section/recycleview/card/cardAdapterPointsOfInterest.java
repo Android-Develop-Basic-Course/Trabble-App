@@ -1,4 +1,4 @@
-package com.example.trabbelapp.recycleview.card;
+package com.example.trabbelapp.views.section.recycleview.card;
 
 import android.content.Context;
 import android.location.Address;
@@ -50,8 +50,12 @@ public class cardAdapterPointsOfInterest extends RecyclerView.Adapter<cardViewHo
     public void onBindViewHolder(@NonNull cardViewHolder holder, int position) {
         final int index = holder.getAbsoluteAdapterPosition();
         String name = PointsOfInterestList.get(position).getName();
-        Double lat = PointsOfInterestList.get(position).getGeoCode().getLatitude();
-        Double lng = PointsOfInterestList.get(position).getGeoCode().getLongitude();
+        double lat = -1;
+        double lng = -1;
+        if (PointsOfInterestList.get(position).getGeoCode()!=null){
+            lat = Double.parseDouble(PointsOfInterestList.get(position).getGeoCode().getLatitude());
+            lng = Double.parseDouble(PointsOfInterestList.get(position).getGeoCode().getLongitude());
+        }
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         List<Address> addresses = null;
         try {

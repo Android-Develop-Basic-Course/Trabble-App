@@ -1,30 +1,30 @@
-package com.example.trabbelapp.models.PointsOfInterest;
+package com.example.trabbelapp.models.GoogleMapsSearch;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class GeoCode {
+public class GpsCoordinates {
 
     @SerializedName("latitude")
     @Expose
-    private String latitude;
+    private Double latitude;
     @SerializedName("longitude")
     @Expose
-    private String longitude;
+    private Double longitude;
 
-    public String getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public String getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 

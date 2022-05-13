@@ -67,8 +67,6 @@ public class LoggingActivity extends AppCompatActivity {
         passwordUser.setHint("Re-enter your password");
         passwordUser.setText("");
         viewTools.hideSystemUI(getWindow().getDecorView());
-        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
     }
 
     @Override

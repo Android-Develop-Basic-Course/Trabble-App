@@ -3,6 +3,7 @@ package com.example.trabbelapp;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.trabbelapp.models.PointsOfInterest.PointsOfInterest;
 import com.example.trabbelapp.utils.Geo;
@@ -34,7 +35,9 @@ public class SectionPage extends AppCompatActivity {
                 .reciveSerializableMessageFromIntent(this, "pointofinterest");
 
 
-
+        findViewById(R.id.sectionBackButton).setOnClickListener(view -> {
+            viewTools.changeView(this, HomeActivity.class);
+        });
 
         if(activityCity!=null){
             Log.e(TAG, activityCity.getName());

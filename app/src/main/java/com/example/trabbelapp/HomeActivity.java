@@ -1,6 +1,7 @@
 package com.example.trabbelapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -56,8 +57,9 @@ public class HomeActivity extends AppCompatActivity {
                 R.anim.dropup);
         setAnimations();
 
-        findViewById(R.id.homeProfileOptionsLinearLayout).setOnClickListener(view -> dropdown());
+        findViewById(R.id.homeProfileButton).setOnClickListener(view -> dropdown());
         findViewById(R.id.homeSignOut).setOnClickListener(view -> signOut());
+
 
         dropdownButton = false;
         layoutDropDown = findViewById(R.id.homeProfileOptionsLinearLayout);
@@ -89,24 +91,18 @@ public class HomeActivity extends AppCompatActivity {
         return new DisposableSingleObserver<Activities>() {
             @Override
             public void onSuccess(Activities response) {
-                // todo - work with the resulting ...
-
-                for (com.example.trabbelapp.models.Activities.Datum d : response.getData()) {
-                    Log.e("Observer", d.getName());
-                }
                 RecyclerView recyclerView = findViewById(R.id.cardsViewActivities);
                 ClickListener listener = new ClickListener() {
                     @Override
                     public void click(int index) {
                         Log.e(TAG, "PLACE: " + index + " - " + response.getData().get(index).getName());
-                        viewTools.sendSerializableMessageToIntent(
-                                actual,
-                                SectionPage.class,
-                                "activity",
-                                response.getData().get(index));
+                        Intent intent = new Intent(actual, SectionPage.class);
+                        intent.putExtra("activity", response.getData().get(index));
+                        intent.putExtra("geocode", response.getData().get(index).getGeoCode());
+                        actual.startActivity(intent);
                     }
                 };
-                cardAdapterActivities cAdap = new cardAdapterActivities(response.getData(), getApplication(), listener);
+                cardAdapterActivities cAdap = new cardAdapterActivities(response.getData().subList(0, 7), getApplication(), listener);
                 recyclerView.setAdapter(cAdap);
                 LinearLayoutManager HorizontalLayout
                         = new LinearLayoutManager(
@@ -130,24 +126,19 @@ public class HomeActivity extends AppCompatActivity {
         return new DisposableSingleObserver<PointsOfInterest>() {
             @Override
             public void onSuccess(PointsOfInterest response) {
-                // todo - work with the resulting ...
 
-                for (com.example.trabbelapp.models.PointsOfInterest.Datum d : response.getData()) {
-                    Log.e("Observer", d.getName());
-                }
                 RecyclerView recyclerView = findViewById(R.id.homeCardViewPointsOfInterest);
                 ClickListener listener = new ClickListener() {
                     @Override
                     public void click(int index) {
                         Log.e(TAG, "PLACE: " + index + " - " + response.getData().get(index).getName());
-                        viewTools.sendSerializableMessageToIntent(
-                                actual,
-                                SectionPage.class,
-                                "pointofinterest",
-                                response.getData().get(index));
+                        Intent intent = new Intent(actual, SectionPage.class);
+                        intent.putExtra("pointofinterest", response.getData().get(index));
+                        intent.putExtra("geocode", response.getData().get(index).getGeoCode());
+                        actual.startActivity(intent);
                     }
                 };
-                cardAdapterPointsOfInterest cAdap = new cardAdapterPointsOfInterest(response.getData(), getApplication(), listener);
+                cardAdapterPointsOfInterest cAdap = new cardAdapterPointsOfInterest(response.getData().subList(0, 7), getApplication(), listener);
                 recyclerView.setAdapter(cAdap);
                 LinearLayoutManager HorizontalLayout
                         = new LinearLayoutManager(
@@ -171,21 +162,15 @@ public class HomeActivity extends AppCompatActivity {
         return new DisposableSingleObserver<Hotels>() {
             @Override
             public void onSuccess(Hotels response) {
-                // todo - work with the resulting ...
-
-                for (com.example.trabbelapp.models.Hotels.Datum d : response.getData()) {
-                    Log.e("Observer", d.getName());
-                }
                 RecyclerView recyclerView = findViewById(R.id.cardsViewHotels);
                 ClickListener listener = new ClickListener() {
                     @Override
                     public void click(int index) {
                         Log.e("PLACE", index + " - " + response.getData().get(index).getName());
-                        viewTools.sendSerializableMessageToIntent(
-                                actual,
-                                SectionPage.class,
-                                "hotel",
-                                response.getData().get(index));
+                        Intent intent = new Intent(actual, SectionPage.class);
+                        intent.putExtra("hotel", response.getData().get(index));
+                        intent.putExtra("geocode", response.getData().get(index).getGeoCode());
+                        actual.startActivity(intent);
                     }
                 };
                 cardAdapterHotels cAdap = new cardAdapterHotels(response.getData().subList(0, 5), getApplication(), listener);

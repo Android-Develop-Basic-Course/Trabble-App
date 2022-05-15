@@ -1,5 +1,7 @@
 package com.example.trabbelapp;
 
+import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,11 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.example.trabbelapp.clients.GoogleMapsSearchClient;
+import com.example.trabbelapp.clients.GooglePlaceClient;
 import com.example.trabbelapp.models.GoogleMapsSearch.GoogleMapsSearch;
 import com.example.trabbelapp.models.GoogleMapsSearch.LocalResult;
-import com.example.trabbelapp.views.section.sectionAdapter;
+import com.example.trabbelapp.models.GooglePlaceSearch.GooglePlaceDetails.GooglePlaceDetails;
+import com.example.trabbelapp.models.GooglePlaceSearch.GooglePlaceSearch;
+import com.example.trabbelapp.views.section.sectionGoogleMapsAdapter;
+import com.example.trabbelapp.views.section.sectionGooglePlaceDetailsAdapter;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 import io.reactivex.observers.DisposableSingleObserver;
 
@@ -54,24 +64,53 @@ public class HotelFragment extends Fragment {
     public void onResume() {
         super.onResume();
         view = getView();
-        new GoogleMapsSearchClient().getGoogleMapsSearch(this.getActivity(), getObserver(view), query);
+        Activity activity = this.getActivity();
+        new GooglePlaceClient()
+                .getGooglePlaceSearch(activity, getObserverPlaceSearch(view, activity), query);
     }
 
-    // Observer
+    // Observers
 
-    public DisposableSingleObserver<GoogleMapsSearch> getObserver(View view) {
-        return new DisposableSingleObserver<GoogleMapsSearch>() {
+    public DisposableSingleObserver<GooglePlaceSearch> getObserverPlaceSearch(View view, Activity activity) {
+        return new DisposableSingleObserver<GooglePlaceSearch>() {
             @Override
-            public void onSuccess(GoogleMapsSearch response) {
-                // todo - work with the resulting ...
-                Log.e("Hotel Fragment", "SUCCESS response");
+            public void onSuccess(GooglePlaceSearch response) {
+                Log.e("PoInterest Fragment", "SUCCESS response");
+                Log.e("Pointerest Response", String.valueOf(response.getLocalResults()==null));
                 if (response.getLocalResults()!=null){
-                    if (!response.getLocalResults().isEmpty()){
-                        LocalResult d = response.getLocalResults().get(0);
-                        new sectionAdapter(view, d);
+                    String lsig = "";
+                    String ludocid = "";
+                    Uri uri = Uri.parse(response.getLocalResults().get(0).getPlaceIdSearch());
+                    try {
+                        lsig = URLDecoder.decode(uri.getQueryParameter("lsig"), "UTF-8");
+                        ludocid = URLDecoder.decode(uri.getQueryParameter("ludocid"), "UTF-8");
+                    } catch (UnsupportedEncodingException exception) {
+                        Log.e("ERROR: ", exception.getMessage());
                     }
+                    Log.e("Extract URL", lsig + " - " + ludocid);
+                    new GooglePlaceClient().getGooglePlaceDetailsByULR(activity, getObserverPlaceDetails(view), lsig, ludocid, response.getSearchInformation().getQueryDisplayed());
                 }
+                dispose();
+            }
 
+            @Override
+            public void onError(Throwable e) {
+                // todo - handle the error case ...
+                Log.e("ERROR", e.getMessage());
+                dispose();
+            }
+        };
+    }
+
+    public DisposableSingleObserver<GooglePlaceDetails> getObserverPlaceDetails(View view) {
+        return new DisposableSingleObserver<GooglePlaceDetails>() {
+            @Override
+            public void onSuccess(GooglePlaceDetails response) {
+                Log.e("PoInterest Fragment", "SUCCESS response");
+                Log.e("Pointerest Response", String.valueOf(response.getLocalResults()==null));
+                if (response.getLocalResults()!=null){
+                    new sectionGooglePlaceDetailsAdapter(view, response);
+                }
                 dispose();
             }
 

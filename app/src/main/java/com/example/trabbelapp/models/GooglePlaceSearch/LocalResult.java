@@ -1,9 +1,7 @@
-package com.example.trabbelapp.models.GoogleMapsSearch;
+package com.example.trabbelapp.models.GooglePlaceSearch;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 public class LocalResult {
 
@@ -16,21 +14,9 @@ public class LocalResult {
     @SerializedName("place_id")
     @Expose
     private String placeId;
-    @SerializedName("data_id")
+    @SerializedName("lsig")
     @Expose
-    private String dataId;
-    @SerializedName("data_cid")
-    @Expose
-    private String dataCid;
-    @SerializedName("reviews_link")
-    @Expose
-    private String reviewsLink;
-    @SerializedName("photos_link")
-    @Expose
-    private String photosLink;
-    @SerializedName("gps_coordinates")
-    @Expose
-    private GpsCoordinates gpsCoordinates;
+    private String lsig;
     @SerializedName("place_id_search")
     @Expose
     private String placeIdSearch;
@@ -42,31 +28,37 @@ public class LocalResult {
     private Integer reviews;
     @SerializedName("type")
     @Expose
-    private String type = null;
+    private String type;
     @SerializedName("address")
     @Expose
     private String address;
     @SerializedName("phone")
     @Expose
     private String phone;
-    @SerializedName("website")
-    @Expose
-    private String website;
     @SerializedName("hours")
     @Expose
     private String hours;
-    @SerializedName("amenities")
+    @SerializedName("gps_coordinates")
     @Expose
-    private List<String> amenities = null;
+    private GpsCoordinates gpsCoordinates;
+    @SerializedName("service_options")
+    @Expose
+    private ServiceOptions serviceOptions;
+    @SerializedName("links")
+    @Expose
+    private Links links;
     @SerializedName("description")
     @Expose
     private String description;
-    @SerializedName("thumbnail")
-    @Expose
-    private String thumbnail;
     @SerializedName("price")
     @Expose
     private String price;
+    @SerializedName("years_in_business")
+    @Expose
+    private String yearsInBusiness;
+    @SerializedName("review")
+    @Expose
+    private String review;
 
     public Integer getPosition() {
         return position;
@@ -92,60 +84,12 @@ public class LocalResult {
         this.placeId = placeId;
     }
 
-    public String getDataId() {
-        return dataId;
+    public String getLsig() {
+        return lsig;
     }
 
-    public void setDataId(String dataId) {
-        this.dataId = dataId;
-    }
-
-    public String getDataCid() {
-        return dataCid;
-    }
-
-    public void setDataCid(String dataCid) {
-        this.dataCid = dataCid;
-    }
-
-    public String getReviewsLink() {
-        return reviewsLink;
-    }
-
-    public void setReviewsLink(String reviewsLink) {
-        this.reviewsLink = reviewsLink;
-    }
-
-    public String getPhotosLink() {
-        return photosLink;
-    }
-
-    public void setPhotosLink(String photosLink) {
-        this.photosLink = photosLink;
-    }
-
-    public GpsCoordinates getGpsCoordinates() {
-        return gpsCoordinates;
-    }
-
-    public void setGpsCoordinates(GpsCoordinates gpsCoordinates) {
-        this.gpsCoordinates = gpsCoordinates;
-    }
-
-    public String getHours() {
-        return hours;
-    }
-
-    public void setHours(String hours) {
-        this.hours = hours;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setLsig(String lsig) {
+        this.lsig = lsig;
     }
 
     public String getPlaceIdSearch() {
@@ -196,28 +140,44 @@ public class LocalResult {
         this.phone = phone;
     }
 
-    public String getWebsite() {
-        return website;
+    public String getHours() {
+        return hours;
     }
 
-    public void setWebsite(String website) {
-        this.website = website;
+    public void setHours(String hours) {
+        this.hours = hours;
     }
 
-    public List<String> getAmenities() {
-        return amenities;
+    public GpsCoordinates getGpsCoordinates() {
+        return gpsCoordinates;
     }
 
-    public void setAmenities(List<String> amenities) {
-        this.amenities = amenities;
+    public void setGpsCoordinates(GpsCoordinates gpsCoordinates) {
+        this.gpsCoordinates = gpsCoordinates;
     }
 
-    public String getThumbnail() {
-        return thumbnail;
+    public ServiceOptions getServiceOptions() {
+        return serviceOptions;
     }
 
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setServiceOptions(ServiceOptions serviceOptions) {
+        this.serviceOptions = serviceOptions;
+    }
+
+    public Links getLinks() {
+        return links;
+    }
+
+    public void setLinks(Links links) {
+        this.links = links;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getPrice() {
@@ -226,6 +186,22 @@ public class LocalResult {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getYearsInBusiness() {
+        return yearsInBusiness;
+    }
+
+    public void setYearsInBusiness(String yearsInBusiness) {
+        this.yearsInBusiness = yearsInBusiness;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
     }
 
 }

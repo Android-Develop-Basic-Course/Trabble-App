@@ -1,4 +1,4 @@
-package com.example.trabbelapp.models.Hotels;
+package com.example.trabbelapp.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

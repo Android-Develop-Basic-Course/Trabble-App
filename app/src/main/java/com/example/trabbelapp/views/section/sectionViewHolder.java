@@ -1,5 +1,6 @@
 package com.example.trabbelapp.views.section;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,13 +20,21 @@ public class sectionViewHolder{
     View view;
 
     public sectionViewHolder(View itemView) {
+        Log.e("item get", "title");
         title = itemView.findViewById(R.id.sectionTitle);
+        Log.e("item get", "description");
         description = itemView.findViewById(R.id.sectionDescription);
+        Log.e("item get", "rating");
         rating = itemView.findViewById(R.id.sectionRating);
+        Log.e("item get", "address");
         address = itemView.findViewById(R.id.sectionAddress);
+        Log.e("item get", "hours");
         hours = itemView.findViewById(R.id.sectionHours);
+        Log.e("item get", "phone");
         phone = itemView.findViewById(R.id.sectionPhone);
+        Log.e("item get", "website");
         website = itemView.findViewById(R.id.sectionWebsite);
+        Log.e("item get", "image");
         image = itemView.findViewById(R.id.sectionImage);
         view = itemView;
     }

@@ -33,6 +33,7 @@ public class Datum implements Parcelable {
     @Expose
     private Distance distance;
 
+
     protected Datum(Parcel in) {
         chainCode = in.readString();
         iataCode = in.readString();
@@ -43,6 +44,7 @@ public class Datum implements Parcelable {
         }
         name = in.readString();
         hotelId = in.readString();
+        geoCode = in.readParcelable(GeoCode.class.getClassLoader());
     }
 
     public static final Creator<Datum> CREATOR = new Creator<Datum>() {

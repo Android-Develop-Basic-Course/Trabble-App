@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.example.trabbelapp.clients.GoogleMapsSearchClient;
 import com.example.trabbelapp.models.GoogleMapsSearch.GoogleMapsSearch;
 import com.example.trabbelapp.models.GoogleMapsSearch.LocalResult;
-import com.example.trabbelapp.views.section.sectionAdapter;
+import com.example.trabbelapp.views.section.sectionGoogleMapsAdapter;
 
 import io.reactivex.observers.DisposableSingleObserver;
 
@@ -82,7 +82,7 @@ public class ActivityFragment extends Fragment {
                 if (response.getLocalResults()!=null){
                     if (!response.getLocalResults().isEmpty()){
                         LocalResult d = response.getLocalResults().get(0);
-                        new sectionAdapter(view, d);
+                        new sectionGoogleMapsAdapter(view, d);
                     }
                 }
 

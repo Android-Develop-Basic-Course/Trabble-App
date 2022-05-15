@@ -11,10 +11,12 @@
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="64dp"
+        android:contentDescription="@string/logoDescription"
+        android:scaleX="2"
+        android:scaleY="2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars"
-        android:contentDescription="@string/logoDescription" />
+        tools:srcCompat="@drawable/icon_trabble_light" />
 
     <TextView
         android:id="@+id/loggingWelcome"
@@ -46,6 +48,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="40dp"
+        android:background="@drawable/button_box_accent_color"
         android:text="@string/loggingButtonText"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints=""
-            android:background="@null"
+            android:background="@drawable/input_box"
             android:ems="10"
             android:hint="@string/inputEmailHint"
             android:inputType="textEmailAddress"
@@ -109,33 +112,40 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageButton
-                android:id="@+id/loggingPasswordVisibilityButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars"
-                android:contentDescription="@string/visibilityButtonDescription" />
-
             <EditText
                 android:id="@+id/loggingPasswordInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
+                android:autofillHints=""
+                android:background="@drawable/input_box"
                 android:ems="10"
                 android:hint="@string/passwordInputHint"
                 android:inputType="textPassword"
+                android:minHeight="48dp"
                 android:padding="10dp"
                 android:textSize="14sp"
-                android:minHeight="48dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:autofillHints="" />
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/loggingPasswordVisibilityButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="hide"
+                android:fontFamily="@font/hack_nerd_font"
+                android:gravity="center|center_horizontal|center_vertical"
+                android:text="@string/icon_visibility_invisible"
+                android:textAlignment="gravity"
+                android:textColor="#B3000000"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
@@ -161,7 +171,9 @@
             android:id="@+id/loggingCreateAccountLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:text="@string/createAccountText"
-            android:layout_marginStart="20dp"/>
+            android:textColor="#56C595"
+            android:textStyle="bold" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

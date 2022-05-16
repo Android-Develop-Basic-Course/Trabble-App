@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_focused="false" >
+    <item android:state_hovered="false" >
         <shape>
             <solid
-                android:color="#4DA8A8A8" />
+                android:color="@color/colorCard" />
             <stroke
                 android:width="1px"
-                android:color="#4DA8A8A8" />
+                android:color="@color/colorCard" />
             <corners android:radius="5dp" />
         </shape>
     </item>
-    <item android:state_focused="true" >
+    <item android:state_hovered="true" >
         <shape>
             <solid
-                android:color="#4DCCCCCC" />
+                android:color="@color/colorLightBackground" />
             <stroke
                 android:width="1px"
-                android:color="#4DCCCCCC" />
+                android:color="@color/colorLightBackground" />
             <corners android:radius="5dp" />
         </shape>
     </item>

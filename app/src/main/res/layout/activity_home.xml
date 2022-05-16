@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
+    android:background="@color/colorBackground"
     tools:context=".HomeActivity">
 
     <ScrollView
@@ -32,7 +32,10 @@
                 android:id="@+id/homeTextActivities"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/activitiesSectionText" />
+                android:text="@string/activitiesSectionText"
+                android:textColor="@color/colorText"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <Space
                 android:layout_width="match_parent"
@@ -54,7 +57,10 @@
                 android:id="@+id/homeTextPointOfInterest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/pointOfInterestSectionText" />
+                android:text="@string/pointOfInterestSectionText"
+                android:textColor="@color/colorText"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <Space
                 android:layout_width="match_parent"
@@ -73,7 +79,10 @@
                 android:id="@+id/homeTextHomes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/hotelsSectionText" />
+                android:text="@string/hotelsSectionText"
+                android:textColor="@color/colorText"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <Space
                 android:layout_width="match_parent"
@@ -148,7 +157,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:foregroundGravity="center"
-                android:text="@string/homeWelcome" />
+                android:text="@string/homeWelcome"
+                android:textColor="@color/colorText"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <Space
                 android:layout_width="wrap_content"

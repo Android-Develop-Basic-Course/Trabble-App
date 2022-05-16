@@ -9,9 +9,9 @@
                 android:height="100sp"/>
             <gradient
                 android:angle="270"
-                android:endColor="#00FFFFFF"
-                android:startColor="#FFFFFF"
-                android:centerColor="#FFFFFF"
+                android:endColor="@color/colorBackgroundFadeOut"
+                android:startColor="@color/colorBackground"
+                android:centerColor="@color/colorBackground"
                 android:centerY="0.7"
                 />
         </shape>

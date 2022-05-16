@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorLightBackground">
 
     <ImageView
         android:id="@+id/loggingLogo"
@@ -25,6 +26,8 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="32dp"
         android:text="@string/loggingWelcome"
+        android:textColor="@color/colorText"
+        android:textColorLink="@null"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,6 +40,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="8dp"
         android:text="@string/loggingMessage"
+        android:textColor="@color/colorText"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loggingWelcome" />
@@ -48,9 +52,11 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="40dp"
-        android:background="@drawable/button_box_accent_color"
+        android:background="@drawable/input_box"
+        android:backgroundTint="@color/colorButton"
         android:text="@string/loggingButtonText"
         android:textAllCaps="false"
+        android:textColor="@color/colorText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LoggingBoxLogIn" />
@@ -72,7 +78,10 @@
             android:id="@+id/loggingEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/textEmail" />
+            android:text="@string/textEmail"
+            android:textColor="@color/colorText"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <Space
             android:layout_width="match_parent"
@@ -91,6 +100,7 @@
             android:padding="10dp"
             android:scrollbarThumbHorizontal="@null"
             android:scrollbarThumbVertical="@null"
+            android:textColor="@color/colorText"
             android:textSize="14sp" />
 
         <Space
@@ -101,7 +111,10 @@
             android:id="@+id/loggingPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/textPassword" />
+            android:text="@string/textPassword"
+            android:textColor="@color/colorText"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <Space
             android:id="@+id/Space"
@@ -123,6 +136,7 @@
                 android:inputType="textPassword"
                 android:minHeight="48dp"
                 android:padding="10dp"
+                android:textColor="@color/colorText"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -165,7 +179,8 @@
             android:id="@+id/loggingCreateAccountMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/noAccountText" />
+            android:text="@string/noAccountText"
+            android:textColor="@color/colorText" />
 
         <TextView
             android:id="@+id/loggingCreateAccountLink"
@@ -173,7 +188,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="@string/createAccountText"
-            android:textColor="#56C595"
+            android:textColor="@color/colorLink"
             android:textStyle="bold" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,8 +47,13 @@ public class SearchPhotosClient {
             @Override
             public void onSuccess(Photos response) {
                 // todo - work with the resulting ...
-                if (Integer.parseInt(response.getSearchInformation().getTotalResults()) > 0)
-                    Picasso.get().load(response.getImagesResults().get(0).getThumbnail()).into(image);
+                if (Integer.parseInt(response.getSearchInformation()
+                        .getTotalResults()) > 0)
+                    Picasso.get().load(
+                            response.getImagesResults()
+                                    .get(0)
+                                    .getThumbnail())
+                            .into(image);
                 dispose();
             }
 

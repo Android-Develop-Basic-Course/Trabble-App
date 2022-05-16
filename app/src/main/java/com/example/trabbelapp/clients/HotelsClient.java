@@ -13,13 +13,17 @@ import io.reactivex.schedulers.Schedulers;
 public class HotelsClient {
 
     Activity activity;
+    PreferenceShareTools preferenceShareTools;
 
     public HotelsClient(Activity a, DisposableSingleObserver<Hotels> ds) {
+        preferenceShareTools = new PreferenceShareTools(a);
         this.activity = a;
         RetrofitClient retrofit = new RetrofitClient();
         HotelsService hotelsService = retrofit.getRetrofitAmadeusV1().create(HotelsService.class);
         hotelsService.getHotels(
-                41.39, 2.16, 5, "KM", "ALL",
+                Double.parseDouble(preferenceShareTools.getString("lat")),
+                Double.parseDouble(preferenceShareTools.getString("lng")),
+                5, "KM", "ALL",
                 "Bearer " + new PreferenceShareTools(this.activity).getString("API_TOKEN")
         ).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

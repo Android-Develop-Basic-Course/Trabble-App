@@ -21,7 +21,7 @@ public class sectionViewHolder{
 
     public sectionViewHolder(View itemView) {
         Log.e("item get", "title");
-        title = itemView.findViewById(R.id.sectionTitle);
+        title = itemView.findViewById(R.id.sectionLatitudInput);
         Log.e("item get", "description");
         description = itemView.findViewById(R.id.sectionDescription);
         Log.e("item get", "rating");

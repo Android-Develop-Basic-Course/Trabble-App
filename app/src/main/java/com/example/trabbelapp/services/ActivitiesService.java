@@ -17,3 +17,4 @@ public interface ActivitiesService {
             @Header("Authorization") String authBearer
     );
 }
+

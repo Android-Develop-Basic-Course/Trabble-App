@@ -10,7 +10,7 @@ public class RetrofitClient {
     }
 
     public static String getSerAPIToken(){
-        return "0d843a08005d47686a4d611f41c47c6ba395d4c738c75df1bd3973ac0a112d98";
+        return "bb2e707d974d173073cf6021d69a39d017732b43d8c6ef95280ba35aca49cb17";
     }
 
     public Retrofit getRetrofitSerpAPI() {
@@ -24,14 +24,6 @@ public class RetrofitClient {
     public Retrofit getRetrofitAmadeusV1() {
         return new Retrofit.Builder()
                 .baseUrl("https://test.api.amadeus.com/v1/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
-    }
-
-    public Retrofit getRetrofitAmadeusV2() {
-        return new Retrofit.Builder()
-                .baseUrl("https://test.api.amadeus.com/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();

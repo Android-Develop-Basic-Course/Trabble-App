@@ -26,7 +26,8 @@ public class sectionGooglePlaceDetailsAdapter extends sectionViewHolder{
             if(result.getLinks().getWebsite()!=null)
                 super.setWebsite(result.getLinks().getWebsite());
         }
-        new SearchPhotosClient(details.getLocalResults().get(0).getTitle(), super.getImage());
+        new SearchPhotosClient(details.getLocalResults().get(0).getTitle(),
+                super.getImage());
         Log.e("Adapter activities", super.getTitle().toString());
     }
 

@@ -22,8 +22,8 @@ public class TokenClient {
         this.activity = a;
         tokenService.getToken(
                 "client_credentials",
-                "BNPEtkIwaFMXwzB9GZ8jdF8tM1TNJuPh",
-                "CrfzLAYVHFj1XcJE"
+                "IEmg3z9hArElGW6hNuP13YNtGHtEerbG",
+                "FYgur83MTYAp0fil"
         ).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new DisposableSingleObserver<Token>() {

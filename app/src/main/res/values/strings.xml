@@ -26,4 +26,6 @@
     <string name="NoFound">No encontrado</string>
     <string name="icon_visibility_visible"></string>
     <string name="icon_visibility_invisible"></string>
+    <string name="darkMode">Dark Mode</string>
+    <string name="lightMode">Light Mode</string>
 </resources>

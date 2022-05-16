@@ -7,9 +7,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,10 +23,10 @@ import com.example.trabbelapp.models.Activities.Activities;
 import com.example.trabbelapp.models.Hotels.Hotels;
 import com.example.trabbelapp.models.PointsOfInterest.PointsOfInterest;
 import com.example.trabbelapp.models.Token;
-import com.example.trabbelapp.views.section.recycleview.card.ClickListener;
-import com.example.trabbelapp.views.section.recycleview.card.cardAdapterActivities;
-import com.example.trabbelapp.views.section.recycleview.card.cardAdapterHotels;
-import com.example.trabbelapp.views.section.recycleview.card.cardAdapterPointsOfInterest;
+import com.example.trabbelapp.views.recyclerview.card.ClickListener;
+import com.example.trabbelapp.views.recyclerview.card.cardAdapterActivities;
+import com.example.trabbelapp.views.recyclerview.card.cardAdapterHotels;
+import com.example.trabbelapp.views.recyclerview.card.cardAdapterPointsOfInterest;
 import com.example.trabbelapp.utils.PreferenceShareTools;
 import com.example.trabbelapp.utils.ViewTools;
 
@@ -42,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
     Animation dropdown;
     Animation dropup;
     Activity actual;
+    Button themeModeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,8 @@ public class HomeActivity extends AppCompatActivity {
 
         findViewById(R.id.homeProfileButton).setOnClickListener(view -> dropdown());
         findViewById(R.id.homeSignOut).setOnClickListener(view -> signOut());
-
+        themeModeButton = findViewById(R.id.homeThemeMode);
+        themeModeButton.setOnClickListener(view -> themeMode());
 
         dropdownButton = false;
         layoutDropDown = findViewById(R.id.homeProfileOptionsLinearLayout);
@@ -193,6 +197,11 @@ public class HomeActivity extends AppCompatActivity {
         };
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
     public void signOut() {
         System.err.println("SignOut");
         preferenceShareTools.setString("emailUser", "");
@@ -202,11 +211,6 @@ public class HomeActivity extends AppCompatActivity {
         viewTools.changeView(this, MainActivity.class);
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
     public void dropdown() {
         if (!dropdownButton) {
             layoutDropDown.startAnimation(dropdown);
@@ -214,6 +218,20 @@ public class HomeActivity extends AppCompatActivity {
             layoutDropDown.startAnimation(dropup);
         }
         dropdownButton = !dropdownButton;
+    }
+
+    public void themeMode(){
+        System.err.println("themeMode");
+        String mode = preferenceShareTools.getString("themeMode");
+        if (mode.isEmpty() || mode.equals("light")){
+            preferenceShareTools.setString("themeMode", "dark");
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+        }
+        else {
+            preferenceShareTools.setString("themeMode", "light");
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
     public void setAnimations() {

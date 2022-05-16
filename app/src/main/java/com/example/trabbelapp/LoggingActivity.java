@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.trabbelapp.clients.FirebaseClient;
 import com.example.trabbelapp.utils.PreferenceShareTools;
@@ -47,6 +48,8 @@ public class LoggingActivity extends AppCompatActivity {
         password = preferenceShareTools.getString("passwordUser");
         Log.e(TAG, "InitialSP: " + email + " - " + password);
 
+        themeMode();
+
         if (email.isEmpty() || password.isEmpty()) {
             Log.w(TAG, "sharepreference: no");
             setContentView(R.layout.activity_logging);
@@ -57,6 +60,18 @@ public class LoggingActivity extends AppCompatActivity {
             viewTools.changeView(this, HomeActivity.class);
         }
 
+    }
+
+    public void themeMode(){
+        System.err.println("themeMode");
+        String mode = preferenceShareTools.getString("themeMode");
+        if (mode.isEmpty() || mode.equals("light")){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
     }
 
     private void errorLogging() {

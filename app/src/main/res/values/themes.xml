@@ -1,11 +1,24 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.TrabbelApp" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
-        <item name="colorAccent">@color/teal_200</item>
-        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#00FFFFFF</item>
+        <item name="colorPrimaryDark">#00FFFFFF</item>
+        <item name="colorAccent">#00FFFFFF</item>
     </style>
-    <drawable name="mainLogoImage">@drawable/home_page_trabble_ligth</drawable>
+
+    <!-- Customize your theme here. -->
+    <drawable name="mainPageLogoImage">@drawable/home_page_trabble_ligth</drawable>
+    <drawable name="loggingLogoImage">@drawable/icon_trabble_light</drawable>
+    <color name="colorText">#191717</color>
+    <color name="colorBackground">#E6E6E4</color>
+    <color name="colorLightBackground">#F9F5EF</color>
+    <color name="colorBackgroundFadeOut">#00E6E6E4</color>
+    <color name="colorAccent">#FD6574</color>
+    <color name="colorAccentClick">#F3929B</color>
+    <color name="colorLink">#2C7784</color>
+    <color name="colorButton">#6C8A9B</color>
+    <color name="colorCard">#406C8A9B</color>
+    <string name="stringThemeMode">@string/darkMode</string>
 </resources>
+

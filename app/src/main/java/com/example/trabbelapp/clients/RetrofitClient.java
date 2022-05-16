@@ -10,7 +10,7 @@ public class RetrofitClient {
     }
 
     public static String getSerAPIToken(){
-        return "d2c18e280840184a8999a5d52a9ced215a72553154113a13e65c294553894fd9";
+        return "0d843a08005d47686a4d611f41c47c6ba395d4c738c75df1bd3973ac0a112d98";
     }
 
     public Retrofit getRetrofitSerpAPI() {

@@ -54,15 +54,28 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/sectionImageBack"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="32dp"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/image_no_found_foreground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <ImageView
                 android:id="@+id/sectionImage"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="32dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_launcher_background"
+                android:scrollbarThumbHorizontal="@null"
+                android:scrollbarThumbVertical="@null"
+                android:scrollbarTrackVertical="@null"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/textView"/>
 
             <LinearLayout
                 android:layout_width="0dp"

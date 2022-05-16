@@ -7,20 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".SectionPage">
 
-    <ImageButton
+    <Button
         android:id="@+id/sectionBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:background="@android:drawable/btn_dialog"
+        android:background="@drawable/input_box"
         android:contentDescription="@string/NoFound"
+        android:fontFamily="@font/hack_nerd_font"
         android:minWidth="48dp"
         android:minHeight="48dp"
+        android:text=""
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck"
-        tools:src="@android:drawable/btn_dialog" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
@@ -38,8 +39,10 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             tools:layout="@layout/fragment_hotel" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

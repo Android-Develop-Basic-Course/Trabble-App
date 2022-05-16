@@ -36,7 +36,6 @@ public class LoggingActivity extends AppCompatActivity {
         viewTools = new ViewTools();
         preferenceShareTools = new PreferenceShareTools(this);
         firebaseClient = new FirebaseClient(this, TAG);
-
         viewTools.hideSystemUI(getWindow().getDecorView());
 
         emailUser = null;

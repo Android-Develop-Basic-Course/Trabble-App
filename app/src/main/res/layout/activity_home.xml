@@ -127,11 +127,27 @@
             android:id="@+id/homeProfileOptionsLinearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorBackground"
             android:orientation="vertical"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
+
+            <Button
+                android:id="@+id/homeSetting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_box_accent_color"
+                android:text="@string/setting"
+                android:textAllCaps="false"
+                android:textColor="@color/colorText" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
 
             <Button
                 android:id="@+id/homeThemeMode"

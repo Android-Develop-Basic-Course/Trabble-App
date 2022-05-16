@@ -91,7 +91,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/sectionImage">
 
                 <TextView
-                    android:id="@+id/sectionTitleText"
+                    android:id="@+id/sectionLatitudText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
@@ -106,7 +106,7 @@
                     android:layout_weight="0" />
 
                 <TextView
-                    android:id="@+id/sectionTitle"
+                    android:id="@+id/sectionLatitudInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"

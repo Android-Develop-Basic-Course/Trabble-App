@@ -2,6 +2,9 @@ package com.example.trabbelapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +26,7 @@ import com.example.trabbelapp.models.Activities.Activities;
 import com.example.trabbelapp.models.Hotels.Hotels;
 import com.example.trabbelapp.models.PointsOfInterest.PointsOfInterest;
 import com.example.trabbelapp.models.Token;
+import com.example.trabbelapp.utils.Geo;
 import com.example.trabbelapp.views.recyclerview.card.ClickListener;
 import com.example.trabbelapp.views.recyclerview.card.cardAdapterActivities;
 import com.example.trabbelapp.views.recyclerview.card.cardAdapterHotels;
@@ -32,7 +36,7 @@ import com.example.trabbelapp.utils.ViewTools;
 
 import io.reactivex.observers.DisposableSingleObserver;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements LocationListener {
 
     private final String TAG = "Home Activity";
     FirebaseClient firebaseClient;
@@ -53,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
         actual = this;
         viewTools = new ViewTools();
         viewTools.hideSystemUI(getWindow().getDecorView());
+        Geo.getLocationByGPS(this);
 
         dropdown = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.dropdown);
@@ -62,6 +67,8 @@ public class HomeActivity extends AppCompatActivity {
 
         findViewById(R.id.homeProfileButton).setOnClickListener(view -> dropdown());
         findViewById(R.id.homeSignOut).setOnClickListener(view -> signOut());
+        findViewById(R.id.homeSetting).setOnClickListener(view -> viewTools.changeView(this, Settings.class));
+
         themeModeButton = findViewById(R.id.homeThemeMode);
         themeModeButton.setOnClickListener(view -> themeMode());
 
@@ -91,6 +98,11 @@ public class HomeActivity extends AppCompatActivity {
         viewTools.hideSystemUI(getWindow().getDecorView());
     }
 
+    @Override
+    public void onLocationChanged(Location location){
+        Geo.locationChange(this, location);
+    }
+
     public DisposableSingleObserver<Activities> getActivitiesObserver() {
         return new DisposableSingleObserver<Activities>() {
             @Override
@@ -106,7 +118,13 @@ public class HomeActivity extends AppCompatActivity {
                         actual.startActivity(intent);
                     }
                 };
-                cardAdapterActivities cAdap = new cardAdapterActivities(response.getData().subList(0, 7), getApplication(), listener);
+
+                cardAdapterActivities cAdap;
+                if(response.getData().size()>8)
+                    cAdap = new cardAdapterActivities(response.getData().subList(0, 7), getApplication(), listener);
+                else
+                    cAdap = new cardAdapterActivities(response.getData(), getApplication(), listener);
+
                 recyclerView.setAdapter(cAdap);
                 LinearLayoutManager HorizontalLayout
                         = new LinearLayoutManager(
@@ -142,7 +160,11 @@ public class HomeActivity extends AppCompatActivity {
                         actual.startActivity(intent);
                     }
                 };
-                cardAdapterPointsOfInterest cAdap = new cardAdapterPointsOfInterest(response.getData().subList(0, 7), getApplication(), listener);
+                cardAdapterPointsOfInterest cAdap;
+                if(response.getData().size()>8)
+                    cAdap = new cardAdapterPointsOfInterest(response.getData().subList(0, 7), getApplication(), listener);
+                else
+                    cAdap = new cardAdapterPointsOfInterest(response.getData(), getApplication(), listener);
                 recyclerView.setAdapter(cAdap);
                 LinearLayoutManager HorizontalLayout
                         = new LinearLayoutManager(
@@ -177,7 +199,13 @@ public class HomeActivity extends AppCompatActivity {
                         actual.startActivity(intent);
                     }
                 };
-                cardAdapterHotels cAdap = new cardAdapterHotels(response.getData().subList(0, 5), getApplication(), listener);
+
+                cardAdapterHotels cAdap;
+                if(response.getData().size()>8)
+                    cAdap = new cardAdapterHotels(response.getData().subList(0, 7), getApplication(), listener);
+                else
+                    cAdap = new cardAdapterHotels(response.getData(), getApplication(), listener);
+
                 recyclerView.setAdapter(cAdap);
                 LinearLayoutManager HorizontalLayout
                         = new LinearLayoutManager(

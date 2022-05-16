@@ -61,4 +61,28 @@ public class Geo {
         preferenceShareTools.setString("lng", String.valueOf(location.getLongitude()));
     }
 
+    public static void locationLastLocation(Activity activity){
+        double lat = 0;
+        double lng = 0;
+        PreferenceShareTools preferenceShareTools = new PreferenceShareTools(activity);
+        LocationManager locationManager = (LocationManager) activity.getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(activity, new String[] {
+                    Manifest.permission.ACCESS_FINE_LOCATION
+            }, 100);
+        }
+        Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (locationGPS != null) {
+            lat = locationGPS.getLatitude();
+            lng = locationGPS.getLongitude();
+            Log.e("lOC", "Your Location: " + "\n" + "Latitude: " + lat + "\n" + "Longitude: " + lng);
+        }
+
+        String latitude = String.valueOf(lat);
+        String longitude = String.valueOf(lng);
+        preferenceShareTools.setString("lat", latitude);
+        preferenceShareTools.setString("lng", longitude);
+    }
+
 }

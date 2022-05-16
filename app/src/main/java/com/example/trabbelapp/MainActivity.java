@@ -1,6 +1,7 @@
 package com.example.trabbelapp;
 
 
+import android.app.Activity;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
@@ -59,9 +60,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             try {
                 // Realizamos una espera de 2000, todo: posteriormente en este tiempo habra que cargar el api token
                 Thread.sleep(2000);
+                if(preferenceShareTools.getString("lng").isEmpty())
+                    Geo.locationLastLocation(this);
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
             viewTools.changeView(this, LoggingActivity.class);
         }
         ).start();

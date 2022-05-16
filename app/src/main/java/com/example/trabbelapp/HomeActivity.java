@@ -34,6 +34,7 @@ import com.example.trabbelapp.views.recyclerview.card.cardAdapterPointsOfInteres
 import com.example.trabbelapp.utils.PreferenceShareTools;
 import com.example.trabbelapp.utils.ViewTools;
 
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableSingleObserver;
 
 public class HomeActivity extends AppCompatActivity implements LocationListener {
@@ -297,5 +298,20 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
             }
         });
+    }
+
+    @Override
+    public void onProviderEnabled(@NonNull String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(@NonNull String provider) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
     }
 }

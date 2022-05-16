@@ -18,15 +18,6 @@ public class FirebaseClient {
     private User user;
     private final Activity activity;
     private final String TAG;
-    private int statusCode;
-
-    public int getStatusCode() {
-        return statusCode;
-    }
-
-    public void setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
-    }
 
     public FirebaseClient(Activity activity, String TAG) {
         this.mAuth = FirebaseAuth.getInstance();
@@ -34,7 +25,6 @@ public class FirebaseClient {
         this.TAG = TAG;
         this.activity = activity;
         FirebaseApp.initializeApp(this.activity);
-        this.statusCode = 201;
     }
 
     public void loggingFirebase(Activity activity, String email, String password) {
@@ -62,17 +52,14 @@ public class FirebaseClient {
 
     public void updateUI(Boolean ack) {
         if (ack) {
-            this.statusCode = 200;
             PreferenceShareTools preferenceShareTools;
             preferenceShareTools = new PreferenceShareTools(this.activity);
-            preferenceShareTools.setInt("statusCode", this.statusCode);
             preferenceShareTools.setString("emailUser", this.user.getEmail());
             preferenceShareTools.setString("passwordUser", this.user.getPassword());
             ViewTools viewTools = new ViewTools();
             viewTools.changeView(this.activity, HomeActivity.class);
         } else {
             setUser("unknown", "unknown");
-            this.statusCode = 304;
         }
     }
 

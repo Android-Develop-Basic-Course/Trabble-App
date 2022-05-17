@@ -56,13 +56,13 @@ public class ViewTools {
         return uri.toString();
     }
 
-    public void sendSerializableMessageToIntent(Activity actualActivity, Class<?> activity, String name_message, Parcelable message) {
+    public void sendParcelableMessageToIntent(Activity actualActivity, Class<?> activity, String name_message, Parcelable message) {
         Intent intent = new Intent(actualActivity, activity);
         intent.putExtra(name_message, message);
         actualActivity.startActivity(intent);
     }
 
-    public Parcelable reciveSerializableMessageFromIntent(Activity actualActivity, String name_message) {
+    public Parcelable reciveParcelableMessageFromIntent(Activity actualActivity, String name_message) {
         Intent intent = actualActivity.getIntent();
         return intent.getParcelableExtra(name_message);
     }

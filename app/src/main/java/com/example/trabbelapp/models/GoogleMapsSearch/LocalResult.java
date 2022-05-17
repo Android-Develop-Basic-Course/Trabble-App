@@ -42,7 +42,7 @@ public class LocalResult {
     private Integer reviews;
     @SerializedName("type")
     @Expose
-    private String type;
+    private String type = null;
     @SerializedName("address")
     @Expose
     private String address;
@@ -228,29 +228,4 @@ public class LocalResult {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "LocalResult{" +
-                "position=" + position +
-                ", title='" + title + '\'' +
-                ", placeId='" + placeId + '\'' +
-                ", dataId='" + dataId + '\'' +
-                ", dataCid='" + dataCid + '\'' +
-                ", reviewsLink='" + reviewsLink + '\'' +
-                ", photosLink='" + photosLink + '\'' +
-                ", gpsCoordinates=" + gpsCoordinates +
-                ", placeIdSearch='" + placeIdSearch + '\'' +
-                ", rating=" + rating +
-                ", reviews=" + reviews +
-                ", type='" + type + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", website='" + website + '\'' +
-                ", hours='" + hours + '\'' +
-                ", amenities=" + amenities +
-                ", description='" + description + '\'' +
-                ", thumbnail='" + thumbnail + '\'' +
-                ", price='" + price + '\'' +
-                '}';
-    }
 }

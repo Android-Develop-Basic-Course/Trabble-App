@@ -1,4 +1,4 @@
-package com.example.trabbelapp.views.section.recycleview.card;
+package com.example.trabbelapp.views.recyclerview.card;
 
 import android.view.View;
 import android.widget.ImageView;

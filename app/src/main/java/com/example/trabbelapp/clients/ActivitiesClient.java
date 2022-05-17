@@ -13,15 +13,19 @@ import io.reactivex.schedulers.Schedulers;
 public class ActivitiesClient {
 
     Activity activity;
+    PreferenceShareTools preferenceShareTools;
 
     public ActivitiesClient(Activity a, DisposableSingleObserver<Activities> ds) {
+        preferenceShareTools = new PreferenceShareTools(a);
         this.activity = a;
         RetrofitClient retrofit = new RetrofitClient();
         ActivitiesService activitiesService = retrofit.getRetrofitAmadeusV1().create(ActivitiesService.class);
         activitiesService.getActivities(
-                41.39, 2.16, 5,
+                Double.parseDouble(preferenceShareTools.getString("lat")),
+                Double.parseDouble(preferenceShareTools.getString("lng")),
+                5,
                 "Bearer " + new PreferenceShareTools(this.activity).getString("API_TOKEN")
-        ).subscribeOn(Schedulers.io())
+        ).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ds);
     }

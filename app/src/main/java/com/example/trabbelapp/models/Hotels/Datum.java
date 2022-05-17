@@ -1,9 +1,12 @@
 package com.example.trabbelapp.models.Hotels;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Datum {
+public class Datum implements Parcelable {
 
     @SerializedName("chainCode")
     @Expose
@@ -29,6 +32,32 @@ public class Datum {
     @SerializedName("distance")
     @Expose
     private Distance distance;
+
+
+    protected Datum(Parcel in) {
+        chainCode = in.readString();
+        iataCode = in.readString();
+        if (in.readByte() == 0) {
+            dupeId = null;
+        } else {
+            dupeId = in.readInt();
+        }
+        name = in.readString();
+        hotelId = in.readString();
+        geoCode = in.readParcelable(GeoCode.class.getClassLoader());
+    }
+
+    public static final Creator<Datum> CREATOR = new Creator<Datum>() {
+        @Override
+        public Datum createFromParcel(Parcel in) {
+            return new Datum(in);
+        }
+
+        @Override
+        public Datum[] newArray(int size) {
+            return new Datum[size];
+        }
+    };
 
     public String getChainCode() {
         return chainCode;
@@ -94,4 +123,22 @@ public class Datum {
         this.distance = distance;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(chainCode);
+        parcel.writeString(iataCode);
+        if (dupeId == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(dupeId);
+        }
+        parcel.writeString(name);
+        parcel.writeString(hotelId);
+    }
 }

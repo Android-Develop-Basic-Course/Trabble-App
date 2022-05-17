@@ -20,13 +20,15 @@ public class PointsOfInterestClient {
         preferenceShareTools = new PreferenceShareTools(a);
         this.activity = a;
         RetrofitClient retrofit = new RetrofitClient();
-        PointsOfInterestService pointsOfInterestService = retrofit.getRetrofitAmadeusV1().create(PointsOfInterestService.class);
+        PointsOfInterestService pointsOfInterestService =
+                retrofit.getRetrofitAmadeusV1().create(PointsOfInterestService.class);
         pointsOfInterestService.getPointsOfInterest(
                 Double.parseDouble(preferenceShareTools.getString("lat")),
                 Double.parseDouble(preferenceShareTools.getString("lng")),
                 5,
-                "Bearer " + new PreferenceShareTools(this.activity).getString("API_TOKEN")
-        ).subscribeOn(Schedulers.io())
+                "Bearer " +
+                        new PreferenceShareTools(this.activity).getString("API_TOKEN")
+        ).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ds);
     }

@@ -2,9 +2,11 @@ package com.example.trabbelapp;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -18,7 +20,7 @@ import com.example.trabbelapp.utils.ViewTools;
 
 import io.reactivex.annotations.NonNull;
 
-public class MainActivity extends AppCompatActivity implements LocationListener {
+public class MainActivity extends AppCompatActivity {
 
     ViewTools viewTools;
     PreferenceShareTools preferenceShareTools;
@@ -26,57 +28,31 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         preferenceShareTools = new PreferenceShareTools(this);
         viewTools = new ViewTools();
         Geo.getLocationByGPS(this);
-
         themeMode();
+        if(preferenceShareTools.getString("lng").isEmpty())
+            Geo.locationLastLocation(this);
         /*
          Eliminamos todos el sistema UI del movil que no se necesita
          de esta manera tenemos el sistema en pantalla completa
         */
         viewTools.hideSystemUI(getWindow().getDecorView());
-
+        new Handler().postDelayed(this::process, 3000);
     }
 
-    @Override
-    public void onLocationChanged(Location location){
-        if(preferenceShareTools.getString("setLocation").equals("false"))
-            Geo.locationChange(this, location);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+    private void process(){
         new TokenClient(this);
-        /*
-         De esta manera mostraremos la pagina de inicio al usuario
-         presentandole la app, cual es su nombre y su branding
-        */
-        new Thread(() -> {
-            try {
-                // Realizamos una espera de 2000, todo: posteriormente en este tiempo habra que cargar el api token
-                Thread.sleep(2000);
-                if(preferenceShareTools.getString("lng").isEmpty())
-                    Geo.locationLastLocation(this);
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            viewTools.changeView(this, LoggingActivity.class);
-        }
-        ).start();
+        viewTools.changeView(this, LoggingActivity.class);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.e("Logging", "Destroy");
-        finish();
+        viewTools.hideSystemUI(getWindow().getDecorView());
     }
 
     public void themeMode(){
@@ -89,20 +65,5 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }
-    }
-
-    @Override
-    public void onProviderEnabled(@NonNull String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(@NonNull String provider) {
-
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
     }
 }

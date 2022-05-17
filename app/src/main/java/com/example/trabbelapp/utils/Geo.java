@@ -17,6 +17,8 @@ import android.util.Log;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.trabbelapp.HomeActivity;
+
 import java.io.IOException;
 import java.util.List;
 public class Geo {
@@ -53,12 +55,17 @@ public class Geo {
         }
     }
 
-    public static void locationChange(Activity activity, Location location){
+    public static void locationChange(Activity activity, Location location, Class<?> target){
         PreferenceShareTools preferenceShareTools = new PreferenceShareTools(activity);
-        Log.e("Longitude", String.valueOf(location.getLongitude()));
-        Log.e("Latitude", String.valueOf(location.getLatitude()));
-        preferenceShareTools.setString("lat", String.valueOf(location.getLatitude()));
-        preferenceShareTools.setString("lng", String.valueOf(location.getLongitude()));
+        if(!String.valueOf(location.getLongitude()).equals(preferenceShareTools.getString("lng"))
+            && !String.valueOf(location.getLatitude()).equals(preferenceShareTools.getString("lat"))){
+            Log.e("Longitude", String.valueOf(location.getLongitude()));
+            Log.e("Latitude", String.valueOf(location.getLatitude()));
+            preferenceShareTools.setString("lat", String.valueOf(location.getLatitude()));
+            preferenceShareTools.setString("lng", String.valueOf(location.getLongitude()));
+            if(target!=null)
+                new ViewTools().changeView(activity, target);
+        }
     }
 
     public static void locationLastLocation(Activity activity){

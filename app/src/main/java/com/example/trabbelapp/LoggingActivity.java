@@ -18,9 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoggingActivity extends AppCompatActivity {
 
-    private static final int TYPE_TEXT_VARIATION_VISIBLE_PASSWORD = 144;
-    private final int TYPE_TEXT_VARIATION_PASSWORD = 148;
-    private final String TAG = "LoggingActivity";
+    private final String TAG = "Logging Activity";
     FirebaseClient firebaseClient;
     EditText emailUser;
     EditText passwordUser;
@@ -38,47 +36,31 @@ public class LoggingActivity extends AppCompatActivity {
         preferenceShareTools = new PreferenceShareTools(this);
         firebaseClient = new FirebaseClient(this, TAG);
         viewTools.hideSystemUI(getWindow().getDecorView());
-
         emailUser = null;
         passwordUser = null;
-
 
         // Comprobar que no hay usuario registrado
         email = preferenceShareTools.getString("emailUser");
         password = preferenceShareTools.getString("passwordUser");
         Log.e(TAG, "InitialSP: " + email + " - " + password);
 
-        themeMode();
-
         if (email.isEmpty() || password.isEmpty()) {
-            Log.w(TAG, "sharepreference: no");
             setContentView(R.layout.activity_logging);
+            findViewById(R.id.loggingPasswordVisibilityButton).setOnFocusChangeListener((v, hasFocus) -> {
+                if (!hasFocus) {
+                    viewTools.hideSystemUI(getWindow().getDecorView());
+                }
+            });
+            Log.w(TAG, "sharepreference: no");
             findViewById(R.id.loggingLogInButton).setOnClickListener(view -> logIn());
             findViewById(R.id.loggingPasswordVisibilityButton).setOnClickListener(view -> setVisibilityPassword());
         } else {
             Log.w(TAG, "sharepreference: yes");
+            viewTools.hideSystemUI(getWindow().getDecorView());
             viewTools.changeView(this, HomeActivity.class);
         }
 
-    }
 
-    public void themeMode(){
-        System.err.println("themeMode");
-        String mode = preferenceShareTools.getString("themeMode");
-        if (mode.isEmpty() || mode.equals("light")){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
-        }
-        else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
-    }
-
-    private void errorLogging() {
-        emailUser.setHint("Re-enter your email");
-        emailUser.setText("");
-        passwordUser.setHint("Re-enter your password");
-        passwordUser.setText("");
     }
 
     public void setVisibilityPassword(){
@@ -109,7 +91,6 @@ public class LoggingActivity extends AppCompatActivity {
         password = passwordUser.getText().toString();
 
         firebaseClient.loggingFirebase(this, email, password);
-
         viewTools.hideSystemUI(getWindow().getDecorView());
     }
 
@@ -127,6 +108,6 @@ public class LoggingActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         Log.e(TAG, "Destroy");
-        finish();
+        viewTools.hideSystemUI(getWindow().getDecorView());
     }
 }

@@ -101,7 +101,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     public void onLocationChanged(Location location){
-        Geo.locationChange(this, location);
+        Geo.locationChange(this, location, HomeActivity.class);
     }
 
     public DisposableSingleObserver<Activities> getActivitiesObserver() {
@@ -114,17 +114,25 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
                     public void click(int index) {
                         Log.e(TAG, "PLACE: " + index + " - " + response.getData().get(index).getName());
                         Intent intent = new Intent(actual, SectionPage.class);
-                        intent.putExtra("activity", response.getData().get(index));
-                        intent.putExtra("geocode", response.getData().get(index).getGeoCode());
+                        intent.putExtra("activity",
+                                response.getData().get(index));
+                        intent.putExtra("geocode",
+                                response.getData().get(index).getGeoCode());
                         actual.startActivity(intent);
                     }
                 };
 
                 cardAdapterActivities cAdap;
                 if(response.getData().size()>8)
-                    cAdap = new cardAdapterActivities(response.getData().subList(0, 7), getApplication(), listener);
+                    cAdap = new cardAdapterActivities(
+                            response.getData().subList(0, 7),
+                            getApplication(),
+                            listener);
                 else
-                    cAdap = new cardAdapterActivities(response.getData(), getApplication(), listener);
+                    cAdap = new cardAdapterActivities(
+                            response.getData(),
+                            getApplication(),
+                            listener);
 
                 recyclerView.setAdapter(cAdap);
                 LinearLayoutManager HorizontalLayout

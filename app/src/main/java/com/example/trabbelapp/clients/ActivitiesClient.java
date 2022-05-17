@@ -25,7 +25,7 @@ public class ActivitiesClient {
                 Double.parseDouble(preferenceShareTools.getString("lng")),
                 5,
                 "Bearer " + new PreferenceShareTools(this.activity).getString("API_TOKEN")
-        ).subscribeOn(Schedulers.io())
+        ).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ds);
     }

@@ -202,14 +202,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/homeProfileButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:adjustViewBounds="false"
+                android:background="@drawable/button_box_accent_color"
                 android:contentDescription="@string/homeProfileButtonDescription"
                 android:cropToPadding="false"
-                android:scaleType="center"
+                android:scaleType="fitXY"
                 android:src="@android:drawable/sym_def_app_icon" />
 
             <Space

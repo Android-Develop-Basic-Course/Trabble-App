@@ -54,6 +54,7 @@ public class LoggingActivity extends AppCompatActivity {
             Log.w(TAG, "sharepreference: no");
             findViewById(R.id.loggingLogInButton).setOnClickListener(view -> logIn());
             findViewById(R.id.loggingPasswordVisibilityButton).setOnClickListener(view -> setVisibilityPassword());
+            findViewById(R.id.loggingCreateAccountLink).setOnClickListener(view -> viewTools.changeView(this,SignUpActivity.class));
         } else {
             Log.w(TAG, "sharepreference: yes");
             viewTools.hideSystemUI(getWindow().getDecorView());

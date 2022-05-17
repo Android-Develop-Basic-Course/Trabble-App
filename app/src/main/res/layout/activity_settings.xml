@@ -15,10 +15,10 @@
         android:background="@drawable/input_box"
         android:contentDescription="@string/NoFound"
         android:fontFamily="@font/hack_nerd_font"
-        android:minWidth="38dp"
-        android:minHeight="38dp"
+        android:minWidth="30dp"
+        android:minHeight="30dp"
         android:text=""
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,15 +55,120 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <Button
+                android:id="@+id/settingButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@drawable/button_box_accent_color"
+                android:text="Guardar"
+                android:textAllCaps="false"
+                android:textColor="@color/colorText"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="32dp"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/settingButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView">
+
+                <TextView
+                    android:id="@+id/settingProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Perfil"
+                    android:textColor="@color/colorText"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/settingURLImageText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="URL Imagen Perfil"
+                    android:textColor="@color/colorText"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_weight="0" />
+
+                <EditText
+                    android:id="@+id/settingURLImageInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:background="@drawable/input_box"
+                    android:hint="Introduce la url de la imagen ..."
+                    android:padding="5dp"
+                    android:textColor="@color/colorText"
+                    android:textSize="10sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/settingNameText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Nombre"
+                    android:textColor="@color/colorText"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_weight="0" />
+
+                <EditText
+                    android:id="@+id/settingNameInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:background="@drawable/input_box"
+                    android:hint="Introduce el nuevo nombre ..."
+                    android:padding="5dp"
+                    android:textColor="@color/colorText"
+                    android:textSize="10sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/settingCoordenadas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Coordenadas"
+                    android:textColor="@color/colorText"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_weight="0" />
 
                 <TextView
                     android:id="@+id/settingLatitudText"
@@ -72,7 +177,7 @@
                     android:layout_weight="0"
                     android:text="Latitud"
                     android:textColor="@color/colorText"
-                    android:textSize="16sp"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <Space
@@ -89,11 +194,11 @@
                     android:hint="Introduce la latitud ..."
                     android:padding="5dp"
                     android:textColor="@color/colorText"
-                    android:textSize="16sp" />
+                    android:textSize="10sp" />
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="20dp" />
+                    android:layout_height="15dp" />
 
                 <TextView
                     android:id="@+id/settingLongitudText"
@@ -102,7 +207,7 @@
                     android:layout_weight="0"
                     android:text="Longitud"
                     android:textColor="@color/colorText"
-                    android:textSize="16sp"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <Space
@@ -119,22 +224,11 @@
                     android:hint="Introduce la longitud ..."
                     android:padding="5dp"
                     android:textColor="@color/colorText"
-                    android:textSize="16sp" />
+                    android:textSize="10sp" />
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
-
-                <Button
-                    android:id="@+id/settingButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:background="@drawable/button_box_accent_color"
-                    android:text="Guardar"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorText"
-                    android:textStyle="bold" />
 
             </LinearLayout>
 

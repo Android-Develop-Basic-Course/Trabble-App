@@ -2,7 +2,6 @@ package com.example.trabbelapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
@@ -12,6 +11,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,15 +29,16 @@ import com.example.trabbelapp.models.Hotels.Hotels;
 import com.example.trabbelapp.models.PointsOfInterest.PointsOfInterest;
 import com.example.trabbelapp.models.Token;
 import com.example.trabbelapp.utils.Geo;
+import com.example.trabbelapp.utils.PreferenceShareTools;
+import com.example.trabbelapp.utils.ViewTools;
 import com.example.trabbelapp.views.recyclerview.card.ClickListener;
 import com.example.trabbelapp.views.recyclerview.card.cardAdapterActivities;
 import com.example.trabbelapp.views.recyclerview.card.cardAdapterHotels;
 import com.example.trabbelapp.views.recyclerview.card.cardAdapterPointsOfInterest;
-import com.example.trabbelapp.utils.PreferenceShareTools;
-import com.example.trabbelapp.utils.ViewTools;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
+import com.squareup.picasso.Picasso;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableSingleObserver;
@@ -49,6 +50,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     PreferenceShareTools preferenceShareTools;
     ViewTools viewTools;
     Token token;
+    ImageView profileImage;
     boolean dropdownButton;
     LinearLayout layoutDropDown;
     Animation dropdown;
@@ -73,6 +75,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         setAnimations();
 
         topWelcome = findViewById(R.id.topWelcome);
+        profileImage = findViewById(R.id.homeProfileButton);
         findViewById(R.id.homeProfileButton).setOnClickListener(view -> dropdown());
         findViewById(R.id.homeSignOut).setOnClickListener(view -> signOut());
         findViewById(R.id.homeSetting).setOnClickListener(view -> viewTools.changeView(this, Settings.class));
@@ -320,21 +323,23 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         String password = preferenceShareTools.getString("passwordUser");
         Log.e("USER-LOG", email + " " + password);
         FirebaseUser currentUser = firebaseClient.getmAuth().getCurrentUser();
-        new Handler().postDelayed(this::setName, 3000);
+        new Handler().postDelayed(this::setProfile, 3000);
         if(currentUser == null){
             viewTools.changeView(this, LoggingActivity.class);
         }
     }
 
-    private void setName(){
+    private void setProfile(){
         String welcome = getResources().getText(R.string.homeWelcome).toString();
         String name = "";
-
+        String urlImage = "";
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             for (UserInfo profile : user.getProviderData()) {
                 // Name, email address, and profile photo Url
                 name = profile.getDisplayName();
+                if (profile.getPhotoUrl()!=null)
+                    urlImage = profile.getPhotoUrl().toString();
                 String email = profile.getEmail();
                 Log.e("USER", name + "-" + email);
             }
@@ -342,6 +347,10 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
         welcome = welcome + " " + name;
         topWelcome.setText(welcome);
+        if (!urlImage.isEmpty()){
+            Log.e("IMAGE", urlImage);
+            Picasso.get().load(urlImage).into(profileImage);
+        }
     }
 
     @Override

@@ -63,7 +63,7 @@ public class FirebaseClient {
         if(urlPhoto!=null)
             profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(name)
-                .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
+                .setPhotoUri(Uri.parse(urlPhoto))
                 .build();
         else
             profileUpdates = new UserProfileChangeRequest.Builder()

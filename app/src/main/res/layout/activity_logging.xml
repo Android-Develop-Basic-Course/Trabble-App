@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorLightBackground">
@@ -14,9 +15,9 @@
         android:contentDescription="@string/logoDescription"
         android:scaleX="2"
         android:scaleY="2"
+        android:src="@drawable/loggingLogoImage"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/loggingLogoImage" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/loggingWelcome"
@@ -49,25 +50,28 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_box"
         android:text="@string/loggingButtonText"
         android:textAllCaps="false"
         android:textColor="@color/colorText"
+        app:layout_constraintBottom_toTopOf="@+id/loggingBoxCreateAccount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoggingBoxLogIn" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/LoggingBoxLogIn"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginBottom="24dp"
         android:orientation="vertical"
         android:showDividers="end"
+        app:layout_constraintBottom_toTopOf="@+id/loggingLogInButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loggingMessage">
@@ -83,7 +87,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="10dp" />
 
         <EditText
             android:id="@+id/loggingEmailInput"
@@ -94,13 +98,13 @@
             android:ems="10"
             android:hint="@string/inputEmailHint"
             android:inputType="textEmailAddress"
-            android:minHeight="48dp"
+            android:minHeight="20dp"
             android:padding="10dp"
             android:scrollbarThumbHorizontal="@null"
             android:scrollbarThumbVertical="@null"
             android:textColor="@color/colorText"
             android:textColorHint="@color/colorText"
-            android:textSize="14sp" />
+            android:textSize="10sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -118,11 +122,11 @@
         <Space
             android:id="@+id/Space"
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="10dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/loggingPasswordInput"
@@ -133,11 +137,11 @@
                 android:ems="10"
                 android:hint="@string/passwordInputHint"
                 android:inputType="textPassword"
-                android:minHeight="48dp"
+                android:minHeight="20dp"
                 android:padding="10dp"
                 android:textColor="@color/colorText"
                 android:textColorHint="@color/colorText"
-                android:textSize="14sp"
+                android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -147,8 +151,8 @@
 
             <Button
                 android:id="@+id/loggingPasswordVisibilityButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="38dp"
+                android:layout_height="34dp"
                 android:background="@null"
                 android:contentDescription="hide"
                 android:fontFamily="@font/hack_nerd_font"
@@ -156,8 +160,7 @@
                 android:text="@string/icon_visibility_invisible"
                 android:textAlignment="gravity"
                 android:textColor="@color/colorText"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -168,14 +171,12 @@
         android:id="@+id/loggingBoxCreateAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loggingLogInButton"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/loggingCreateAccountMessage"

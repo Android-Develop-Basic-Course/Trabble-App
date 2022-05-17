@@ -80,148 +80,161 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-            <LinearLayout
-                android:layout_width="0dp"
+            <ScrollView
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="32dp"
-                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sectionImage">
+                app:layout_constraintTop_toBottomOf="@+id/sectionImageBack">
 
-                <TextView
-                    android:id="@+id/sectionLatitudText"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="Nombre"
-                    android:textColor="@color/colorText"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="32dp"
+                    android:orientation="vertical">
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="0" />
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_weight="0" />
 
-                <TextView
-                    android:id="@+id/sectionLatitudInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="@string/NoFound"
-                    android:textColor="@color/colorText" />
+                    <TextView
+                        android:id="@+id/sectionLatitudText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="Nombre"
+                        android:textColor="@color/colorText"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_weight="0" />
 
-                <TextView
-                    android:id="@+id/sectionDescriptionText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="Descripción"
-                    android:textColor="@color/colorText"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/sectionLatitudInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="@string/NoFound"
+                        android:textColor="@color/colorText" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="0" />
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
 
-                <TextView
-                    android:id="@+id/sectionDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="@string/NoFound"
-                    android:textColor="@color/colorText" />
+                    <TextView
+                        android:id="@+id/sectionDescriptionText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="Descripción"
+                        android:textColor="@color/colorText"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_weight="0" />
 
-                <TextView
-                    android:id="@+id/sectionAddressText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="Dirección"
-                    android:textColor="@color/colorText"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/sectionDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="@string/NoFound"
+                        android:textColor="@color/colorText" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="0" />
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
 
-                <TextView
-                    android:id="@+id/sectionAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="@string/NoFound"
-                    android:textColor="@color/colorText" />
+                    <TextView
+                        android:id="@+id/sectionAddressText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="Dirección"
+                        android:textColor="@color/colorText"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_weight="0" />
 
-                <TextView
-                    android:id="@+id/sectionPhoneText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="Phone"
-                    android:textColor="@color/colorText"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/sectionAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="@string/NoFound"
+                        android:textColor="@color/colorText" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="0" />
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
 
-                <TextView
-                    android:id="@+id/sectionPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="@string/NoFound"
-                    android:textColor="@color/colorText" />
+                    <TextView
+                        android:id="@+id/sectionPhoneText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="Phone"
+                        android:textColor="@color/colorText"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_weight="0" />
 
-                <TextView
-                    android:id="@+id/sectionWebsiteText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="Website"
-                    android:textColor="@color/colorText"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/sectionPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="@string/NoFound"
+                        android:textColor="@color/colorText" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="0" />
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
 
-                <TextView
-                    android:id="@+id/sectionWebsite"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="@string/NoFound"
-                    android:textColor="@color/colorText" />
+                    <TextView
+                        android:id="@+id/sectionWebsiteText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="Website"
+                        android:textColor="@color/colorText"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-            </LinearLayout>
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_weight="0" />
+
+                    <TextView
+                        android:id="@+id/sectionWebsite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="@string/NoFound"
+                        android:textColor="@color/colorText" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight="0" />
+
+                </LinearLayout>
+            </ScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

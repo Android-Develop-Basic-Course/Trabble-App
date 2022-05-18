@@ -47,8 +47,14 @@ public class Geo {
             }, 100);
         }
         try{
-            LocationManager locationManager = (LocationManager) activity.getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, (LocationListener) activity);
+            LocationManager locationManager = (LocationManager) activity
+                    .getApplicationContext()
+                    .getSystemService(Context.LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(
+                    LocationManager.GPS_PROVIDER,
+                    5000,
+                    5,
+                    (LocationListener) activity);
         }
         catch (Exception ex) {
             Log.e("ERROR", "Error " + ex.getMessage());
@@ -72,7 +78,9 @@ public class Geo {
         double lat = 0;
         double lng = 0;
         PreferenceShareTools preferenceShareTools = new PreferenceShareTools(activity);
-        LocationManager locationManager = (LocationManager) activity.getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) activity
+                .getApplicationContext()
+                .getSystemService(Context.LOCATION_SERVICE);
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(activity, new String[] {
@@ -83,7 +91,6 @@ public class Geo {
         if (locationGPS != null) {
             lat = locationGPS.getLatitude();
             lng = locationGPS.getLongitude();
-            Log.e("lOC", "Your Location: " + "\n" + "Latitude: " + lat + "\n" + "Longitude: " + lng);
         }
 
         String latitude = String.valueOf(lat);
